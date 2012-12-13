@@ -1,0 +1,28 @@
+[hub]
+        protocol = https
+[user]
+        name = Dan Fleming
+        email = dan@dflems.com
+[credential]
+        helper = osxkeychain
+[alias]
+        co = checkout
+        wtf     = !$ZSH/bin/git-wtf
+        count   = !git shortlog -sn
+[color]
+        diff = auto
+        status = auto
+        branch = auto
+        ui = true
+[core]
+        excludesfile = ~/.gitignore
+        editor = vim
+	excludesfile = /Users/dan/.gitignore
+[apply]
+        whitespace = nowarn
+[mergetool]
+        keepBackup = false
+[difftool]
+        prompt = false
+[help]
+        autocorrect = 1
