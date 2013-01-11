@@ -1,0 +1,25 @@
+#!/usr/bin/env ruby
+
+Pry.commands.command "reload-files" do
+  $LOADED_FEATURES.each do |path|
+    silence_warnings do
+      begin
+        if File.extname(path) == '.rb'
+         load path 
+        end
+      rescue LoadError
+        warn '[INFO] "%s" failed to be reloaded.' % [path] 
+      rescue Exception => e
+        warn '[INFO] "%s" failed to load(%s)' % [path,e.class]
+      end
+    end
+  end
+end
+Pry.commands.alias_command "r!", "reload-files"
+
+local_pryrc_exists = File.exists? '.pryrc'
+if local_pryrc_exists && ENV["HOME"] != Dir.getwd 
+  path = File.join Dir.getwd, '.pryrc' 
+  warn '[INFO] "%s" found… loading.' % [path]
+  load path
+end

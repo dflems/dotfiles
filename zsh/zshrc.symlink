@@ -1,11 +1,17 @@
+# Use the local ZSH from homebrew first
+localzsh=/usr/local/bin/zsh
+if test -f $localzsh && [ "$SHELL" != "$localzsh" ]; then
+  export SHELL=$localzsh
+  exec $localzsh
+fi
+
 # shortcut to this dotfiles path is $ZSH
 export ZSH=$HOME/.dotfiles
 
 # your project folder that we can `c [tab]` to
 export PROJECTS=~/Dev
 
-# source every .zsh file in this rep
-#for config_file ($ZSH/**/*.zsh) source $config_file
+# source every non-completion .zsh file
 for config_file ($ZSH/**/*.zsh) [[ "$(basename $config_file)" == "completion.zsh" ]] || source $config_file
 
 # use .localrc for SUPER SECRET CRAP that you don't
@@ -16,8 +22,10 @@ then
 fi
 
 # initialize autocomplete here, otherwise functions won't be loaded
-autoload -U compinit
-compinit
+autoload -U compinit && compinit
 
-# load every completion after autocomplete loads
+# load every completion .zsh file after autocomplete loads
 for config_file ($ZSH/**/completion.zsh) source $config_file
+
+# z (frecency) completion
+source `brew --prefix`/etc/profile.d/z.sh
