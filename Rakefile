@@ -34,8 +34,11 @@ task :install do
   end
 end
 
-task :uninstall do
+task :sublime2 do
+  exec("sublime2/setup")
+end
 
+task :uninstall do
   Dir.glob('**/*.symlink').each do |linkable|
 
     file = linkable.split('/').last.split('.symlink').last

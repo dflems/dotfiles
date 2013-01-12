@@ -1,0 +1,34 @@
+#!/bin/sh
+# Initial setup for Sublime Text 2
+
+echo "Setting up Sublime Text 2..."
+
+PID=`ps x | grep "Sublime Text 2.app" | grep -v "grep" | awk '{print $1}'`
+if [ ! -z "$PID" ]; then
+	echo "! Please close Sublime Text 2 before running this script."
+	exit 1
+fi
+
+# Symlink
+SUBL_PACKAGE_DIR=~/Library/Application\ Support/Sublime\ Text\ 2/Packages
+if [ ! -L "$SUBL_PACKAGE_DIR/User" ]; then
+	SUBL_USER_BACKUP="$SUBL_PACKAGE_DIR/User_$(date +%s).backup"
+	mv "$SUBL_PACKAGE_DIR/User" "$SUBL_USER_BACKUP"
+	echo "* Current user prefs backed up to $SUBL_USER_BACKUP"
+fi
+
+echo "* Symlinking \"$ZSH/sublime2/User\" to \"$SUBL_PACKAGE_DIR/User\""
+rm -rf "$SUBL_PACKAGE_DIR/User"
+ln -s "$ZSH/sublime2/User" "$SUBL_PACKAGE_DIR"
+
+# Install the Soda theme
+echo "* Installing \"Soda\" theme"
+cd "$SUBL_PACKAGE_DIR"
+rm -rf "Theme - Soda"
+git clone --quiet https://github.com/buymeasoda/soda-theme/ "Theme - Soda"
+
+# Install tomorrow color theme
+echo "* Installing \"Tomorrow Night\" color theme"
+rm -rf "Tomorrow"
+mkdir "Tomorrow"
+curl --silent --output Tomorrow/Tomorrow-Night.tmTheme https://raw.github.com/chriskempson/tomorrow-theme/master/textmate/Tomorrow-Night.tmTheme

@@ -23,4 +23,4 @@ script/bootstrap
 * [garybernhardt/dotfiles](https://github.com/garybernhardt/dotfiles): Git scripts and gitconfig. Great stuff. A+ would recommend.
 
 ## todo
-* Sublime Text 2 settings
+* Lots.
