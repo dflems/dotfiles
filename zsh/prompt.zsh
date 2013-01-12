@@ -39,12 +39,12 @@ need_push () {
   fi
 }
 
-rb_prompt(){
+rb_version(){
   if (( $+commands[rbenv] ))
   then
-    echo "%{$fg_bold[yellow]%}$(rbenv version | awk '{print $1}')%{$reset_color%}"
+    echo "$(rbenv version | awk '{print $1}')"
   else
-    echo "%{$fg_bold[yellow]%}system%{$reset_color%}"
+    echo "system"
   fi
 }
 
@@ -57,8 +57,8 @@ set_rprompt () {
 }
 
 set_prompt () {
-  export PROMPT=$'\n$(rb_prompt) in $(directory_name) $(git_dirty)$(need_push)\n› '
-  export RPROMPT="%{$fg_bold[grey]%}$(whoami)@$(hostname)%{$reset_color%}"
+  export PROMPT=$'\n%{$fg_bold[magenta]%}%n%{$reset_color%} at %{$fg_bold[yellow]%}%m%{$reset_color%} in $(directory_name) $(git_dirty)$(need_push)\n› '
+  export RPROMPT="%{$fg_bold[grey]%}$(rb_version)%{$reset_color%}"
 }
 
 precmd () {
