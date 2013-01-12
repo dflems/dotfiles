@@ -11,9 +11,7 @@ then
   echo "  x You should probably install Homebrew first:"
   echo "    https://github.com/mxcl/homebrew/wiki/installation"
   exit
-else
-  echo "  + Homebrew found."
 fi
 
-# Install grc, coreutils, and z.sh
+# Install homebrew packages
 brew install grc coreutils z
