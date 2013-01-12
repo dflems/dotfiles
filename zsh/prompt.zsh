@@ -23,7 +23,6 @@ git_dirty() {
 
 git_prompt_info () {
  ref=$(/usr/bin/git symbolic-ref HEAD 2>/dev/null) || return
-# echo "(%{\e[0;33m%}${ref#refs/heads/}%{\e[0m%})"
  echo "${ref#refs/heads/}"
 }
 
@@ -45,26 +44,7 @@ rb_prompt(){
   then
     echo "%{$fg_bold[yellow]%}$(rbenv version | awk '{print $1}')%{$reset_color%}"
   else
-    echo ""
-  fi
-}
-
-# This keeps the number of todos always available the right hand side of my
-# command line. I filter it to only count those tagged as "+next", so it's more
-# of a motivation to clear out the list.
-todo(){
-  if (( $+commands[todo.sh] ))
-  then
-    num=$(echo $(todo.sh ls +next | wc -l))
-    let todos=num-2
-    if [ $todos != 0 ]
-    then
-      echo "$todos"
-    else
-      echo ""
-    fi
-  else
-    echo ""
+    echo "%{$fg_bold[yellow]%}system%{$reset_color%}"
   fi
 }
 
@@ -72,12 +52,18 @@ directory_name(){
   echo "%{$fg_bold[cyan]%}%1/%\/%{$reset_color%}"
 }
 
-export PROMPT=$'\n$(rb_prompt) in $(directory_name) $(git_dirty)$(need_push)\n› '
-set_prompt () {
-  export RPROMPT="%{$fg_bold[cyan]%}$(todo)%{$reset_color%}"
+set_rprompt () {
+  #export RPROMPT="%{$fg_bold[grey]%}$(whoami)@$(hostname)%{$reset_color%}"
 }
 
-precmd() {
-  title "zsh" "%m" "%55<...<%~"
-  set_prompt
+set_prompt () {
+  export PROMPT=$'\n$(rb_prompt) in $(directory_name) $(git_dirty)$(need_push)\n› '
+  export RPROMPT="%{$fg_bold[grey]%}$(whoami)@$(hostname)%{$reset_color%}"
 }
+
+precmd () {
+  title "zsh" "%m" "%55<...<%~"
+  #set_rprompt
+}
+
+set_prompt
