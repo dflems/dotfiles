@@ -6,3 +6,6 @@ alias redis-down='killall redis-server'
 
 alias mysql-up='mysql.server start'
 alias mysql-down='mysql.server stop'
+
+alias mongo-up='mongod --fork --logpath /usr/local/var/log/mongodb.log --logappend'
+alias mongo-down='kill -2 $(cat /usr/local/var/mongodb/mongod.lock)' #safe
