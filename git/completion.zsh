@@ -1,9 +1,8 @@
-# Uses git's autocompletion for inner commands. Assumes an install of git's
-# bash `git-completion` script at $completion below (this is where Homebrew
-# tosses it, at least).
-# completion=/usr/local/etc/bash_completion.d/git-completion.bash
+# Using the ZSH-default git completion instead of /usr/local/share/zsh/site-functions/_git
+# Git's built-in completion script gets all the aliases properly, but isn't verbose.
 
-# if test -f $completion
-# then
-#   ZSH_VERSION='' source $completion
-# fi
+# Because we aliased git -> hub
+if (( $+commands[hub] )) then
+  compdef hub=git
+  . /usr/local/share/zsh/site-functions/_hub
+fi

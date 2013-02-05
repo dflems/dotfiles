@@ -11,5 +11,8 @@ export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
 # dotfiles bin
 export PATH="$ZSH/bin:$ZSH/git/bin:$PATH"
 
+# local bin priority
+export PATH="./bin:$PATH"
+
 # manpages
 export MANPATH="/usr/local/man:/usr/local/mysql/man:/usr/local/git/man:$MANPATH"
