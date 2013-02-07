@@ -31,7 +31,7 @@
     gn = goodness
     gnc = goodness --cached
 
-    # Fancy logging.
+    # Fancy logging
     #   h = head
     #   hp = head with patch
     #   r = recent commits, only current branch
@@ -45,6 +45,8 @@
     ra = !git r --all
     l = "!. ~/.githelpers && pretty_git_log"
     la = !git l --all
+
+    news = log -p HEAD@{1}..HEAD@{0}
 [color]
     diff = auto
     status = auto
