@@ -8,10 +8,12 @@
 # Check for Homebrew
 if test ! $(which brew)
 then
-  echo "  x You should probably install Homebrew first:"
-  echo "    https://github.com/mxcl/homebrew/wiki/installation"
+echo " x You should probably install Homebrew first:"
+  echo " https://github.com/mxcl/homebrew/wiki/installation"
   exit
 fi
 
 # Install homebrew packages
 brew install grc coreutils z
+
+exit 0
