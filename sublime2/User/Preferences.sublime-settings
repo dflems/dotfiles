@@ -1,5 +1,5 @@
 {
-	"folder_exclude_patterns": [".svn", ".git", ".hg", "CVS", "tmp/cache"],
+	"folder_exclude_patterns": [".svn", ".git", ".hg", "CVS", "tmp/cache", "public/__assets"],
 	"color_scheme": "Packages/Tomorrow/Tomorrow-Night.tmTheme",
 	"font_size": 12.0,
 	"ignored_packages":
