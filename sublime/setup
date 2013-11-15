@@ -1,25 +1,31 @@
 #!/bin/sh
-# Initial setup for Sublime Text 2
+# Initial setup for Sublime Text
 
-echo "Setting up Sublime Text 2..."
+echo "Setting up Sublime Text..."
 
-PID=`ps x | grep "Sublime Text 2.app" | grep -v "grep" | awk '{print $1}'`
+PID=`ps x | grep "Sublime Text.app" | grep -v "grep" | awk '{print $1}'`
 if [ ! -z "$PID" ]; then
-	echo "! Please close Sublime Text 2 before running this script."
+	echo "! Please close Sublime Text 3 before running this script."
 	exit 1
 fi
 
+# Check for install
+SUBL_PACKAGE_DIR=~/Library/Application\ Support/Sublime\ Text\ 3/Packages
+if [ ! -d "$DIRECTORY" ]; then
+	echo "! Sublime Text 3 is not installed."
+	exit 2
+fi
+
 # Symlink
-SUBL_PACKAGE_DIR=~/Library/Application\ Support/Sublime\ Text\ 2/Packages
 if [ ! -L "$SUBL_PACKAGE_DIR/User" ]; then
 	SUBL_USER_BACKUP="$SUBL_PACKAGE_DIR/User_$(date +%s).backup"
 	mv "$SUBL_PACKAGE_DIR/User" "$SUBL_USER_BACKUP"
 	echo "* Current user prefs backed up to $SUBL_USER_BACKUP"
 fi
 
-echo "* Symlinking \"$ZSH/sublime2/User\" to \"$SUBL_PACKAGE_DIR/User\""
+echo "* Symlinking \"$ZSH/sublime/User\" to \"$SUBL_PACKAGE_DIR/User\""
 rm -rf "$SUBL_PACKAGE_DIR/User"
-ln -s "$ZSH/sublime2/User" "$SUBL_PACKAGE_DIR"
+ln -s "$ZSH/sublime/User" "$SUBL_PACKAGE_DIR"
 
 # Install the Soda theme
 echo "* Installing \"Soda\" theme"
