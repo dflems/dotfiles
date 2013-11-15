@@ -11,7 +11,7 @@ fi
 
 # Check for install
 SUBL_PACKAGE_DIR=~/Library/Application\ Support/Sublime\ Text\ 3/Packages
-if [ ! -d "$DIRECTORY" ]; then
+if [ ! -d "$SUBL_PACKAGE_DIR" ]; then
 	echo "! Sublime Text 3 is not installed."
 	exit 2
 fi
