@@ -7,7 +7,7 @@ Mostly based on [holman's](http://github.com/holman) topically-organized dotfile
 * [rbenv](https://github.com/sstephenson/rbenv#installation) is optional, but recommended `brew install rbenv ruby-build`
 
 ## what's this gonna do?
-* Install some Homebrew dependencies ([grc](http://korpus.juls.savba.sk/~garabik/software/grc.html), [coreutils](http://www.gnu.org/software/coreutils)).
+* Install some Homebrew dependencies and neat stuff.
 * Symlink each `FILENAME.symlink` to `~/.FILENAME`.
 * Every `*.zsh` file will get sourced.
 * Autocompletion loaded from `completion.zsh` files in topic folders.
@@ -23,10 +23,11 @@ script/bootstrap
 
 ## .dotfiles of interest
 * [dotfiles.github.com](http://dotfiles.github.com): Growing list of resources (follow [@octodots](http://www.twitter.com/octodots) for the latest-and-greatest)
-* [holman/dotfiles](http://github.com/holman/dotfiles): Bootstrapping, topicality, ZSH config, vim config
-* [rtomayko/dotfiles](https://github.com/rtomayko/dotfiles): Some scripts (and symlinking `bitch,` to `sudo`. Genius.)
-* [garybernhardt/dotfiles](https://github.com/garybernhardt/dotfiles): Git scripts and gitconfig. Great stuff. A+ would recommend.
+* [holman/dotfiles](http://github.com/holman/dotfiles): Bootstrapping, topicality, ZSH config
+* [rtomayko/dotfiles](https://github.com/rtomayko/dotfiles): Scripts
+* [garybernhardt/dotfiles](https://github.com/garybernhardt/dotfiles): Git hotness
+* [mathiasbynens/dotfiles](https://github.com/mathiasbynens/dotfiles): OSX goodness
 
 ## todo
-* Script for installing common homebrew recipes
-* Clean up
+* [cowboy/dotfiles](https://github.com/cowboy/dotfiles)
+* [skwp/dotfiles](https://github.com/skwp/dotfiles)

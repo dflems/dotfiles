@@ -14,19 +14,18 @@ git_branch() {
 }
 
 git_dirty() {
-  st=$($git status 2>/dev/null | tail -n 1)
-  if [[ $st == "" ]]
-  then
-    echo ""
-  else
-    bch=$(git_prompt_info)
-    if [[ -z "$bch" ]]; then bch='untracked'; fi
-    if [[ "$st" =~ ^nothing ]]
-    then
-      echo "on %{$fg_bold[green]%}${bch}%{$reset_color%}"
+  branch_name=$(git_prompt_info)
+  state=$($git status --porcelain 2>/dev/null | tail -n 1)
+
+  if [[ ! -z "$branch_name" || ! -z "$state" ]]; then
+    if [[ -z "$branch_name" ]]; then branch_name='UNTRACKED'; fi
+    if [[ "$state" = "" ]]; then
+      echo "on %{$fg_bold[green]%}${branch_name}%{$reset_color%}"
     else
-      echo "on %{$fg_bold[red]%}${bch}%{$reset_color%}"
+      echo "on %{$fg_bold[red]%}${branch_name}%{$reset_color%}"
     fi
+  else
+    echo ''
   fi
 }
 
@@ -36,7 +35,6 @@ git_prompt_info () {
 }
 
 unpushed () {
-  #$git cherry -v `$git config --get branch.master.remote`/$(git_branch) 2>/dev/null
   $git cherry -v @{upstream} 2>/dev/null
 }
 
