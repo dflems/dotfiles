@@ -1,0 +1,31 @@
+# Make sure we’re using the latest Homebrew
+update
+
+# Upgrade any already-installed formulae
+upgrade
+
+# Install GNU core utilities (those that come with OS X are outdated)
+install coreutils
+
+# Install GRC for coloring
+install grc
+
+# Install GNU `find`, `locate`, `updatedb`, and `xargs`, g-prefixed
+#install findutils
+
+# Install wget with IRI support
+#install wget --enable-iri
+
+# Install more recent versions of some OS X tools
+install vim --override-system-vi
+
+# Install other useful binaries
+install ack
+install git
+install ngrep
+#install node
+install rename
+install tree
+
+# Remove outdated versions from the cellar
+cleanup
