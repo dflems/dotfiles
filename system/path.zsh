@@ -8,6 +8,12 @@ export NODE_PATH="/usr/local/lib/node"
 # homebrew
 export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
 
+# coreutils
+cu=$(brew --prefix coreutils 2>/dev/null)
+if [[ ! -z "$cu" ]]; then
+  export PATH="$cu/libexec/gnubin:$PATH"
+fi
+
 # dotfiles bin
 export PATH="$ZSH/bin:$ZSH/git/bin:$PATH"
 
