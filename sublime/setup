@@ -38,3 +38,9 @@ echo "* Installing \"Tomorrow Night\" color theme"
 rm -rf "Tomorrow"
 mkdir "Tomorrow"
 curl --silent --output Tomorrow/Tomorrow-Night.tmTheme https://raw.github.com/chriskempson/tomorrow-theme/master/textmate/Tomorrow-Night.tmTheme
+
+# Install Spacegray
+echo "* Installing Spacegray"
+cd "$SUBL_PACKAGE_DIR"
+rm -rf "Theme - Spacegray"
+git clone --quiet https://github.com/kkga/spacegray "Theme - Spacegray"
