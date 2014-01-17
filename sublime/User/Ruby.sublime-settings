@@ -1,6 +1,7 @@
 {
 	"extensions":
 	[
+		"Podfile",
 		"podspec",
 		"ru",
 		"Guardfile",
