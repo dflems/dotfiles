@@ -1,3 +1,0 @@
-#!/bin/sh
-
-ps -el | grep 'Z' | wc -l | awk {'print $1'}   
