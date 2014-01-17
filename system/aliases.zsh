@@ -9,6 +9,9 @@ then
   alias la='gls -A --color'
 fi
 
+# Hurr durr
+alias bitch,='sudo'
+
 # Enhanced WHOIS lookups
 alias whois="whois -h whois-servers.net"
 
