@@ -4,16 +4,18 @@
     name = AUTHORNAME
     email = AUTHOREMAIL
 [credential]
-    helper = osxkeychain
+    helper = GIT_CREDENTIAL_HELPER
 [alias]
     b = branch
     st = status -sb
     ci = commit
     co = checkout
+    po = push origin
     amend = commit --amend -C HEAD
     aa = add --all
-    po = push origin
+    all = add -A
     dlm = !git-delete-local-merged
+    undo = "!git reset --soft HEAD^"
 
     # l = log all commits, (la = all reachable refs)
     # r = log recent commits (ra = all reachable refs)
