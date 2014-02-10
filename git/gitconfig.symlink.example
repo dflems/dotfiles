@@ -6,23 +6,34 @@
 [credential]
     helper = GIT_CREDENTIAL_HELPER
 [alias]
-    b = branch
+    # shorthand
     st = status -sb
+    cp = cherry-pick
+    cl = clone
     ci = commit
     co = checkout
+    br = branch 
+    diff = diff --word-diff
+    dc = diff --cached
+    ds = diff --staged
     po = push origin
-    amend = commit --amend -C HEAD
     aa = add --all
-    all = add -A
+
+    # stash
+    sl = stash list
+    sa = stash apply
+    ss = stash save
+
+    # custom
+    fup = log --since '1 day ago' --oneline --author <AUTHOREMAIL>
+    amend = commit --amend -C HEAD
     dlm = !git-delete-local-merged
     undo = "!git reset --soft HEAD^"
 
-    # l = log all commits, (la = all reachable refs)
-    # r = log recent commits (ra = all reachable refs)
-    l = "!. ~/.githelpers && pretty_git_log"
-    la = !git l --all
-    r = !git l -20
-    ra = !git r --all
+    # logging
+    ls = log --pretty=format:'%C(yellow)%h %C(blue)%ad%C(red)%d %C(reset)%s%C(green) [%an]' --decorate --date=short
+    lss = !git --no-pager ls -n 25
+    lsv = !git ls --numstat
 [color]
     diff = auto
     status = auto
