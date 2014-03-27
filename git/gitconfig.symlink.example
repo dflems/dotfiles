@@ -25,7 +25,6 @@
     ss = stash save
 
     # custom
-    fup = log --since '1 day ago' --oneline --author <AUTHOREMAIL>
     amend = commit --amend -C HEAD
     dlm = !git-delete-local-merged
     undo = "!git reset --soft HEAD^"
@@ -34,6 +33,7 @@
     ls = log --pretty=format:'%C(yellow)%h %C(blue)%ad%C(red)%d %C(reset)%s%C(green) [%an]' --decorate --date=short
     lss = !git --no-pager ls -n 25
     lsv = !git ls --numstat
+    lst = !git ls --since '1 day ago' --author AUTHOREMAIL
 [color]
     diff = auto
     status = auto
