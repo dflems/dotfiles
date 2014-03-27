@@ -1,0 +1,43 @@
+#!/bin/bash
+#
+# git get
+#
+# Place this script in your path, so that git(1) can find it. Presto!
+# You can now type `git get` instead of `git pull` and enjoy the
+# advantages of rebasing atop instead of merging remote changes.
+#
+# If you have local changes, use `git get --stash` to stash and
+# pop afterwards your changes automatically.
+#
+# Use `git get <remote>` to fetch from a specific remote other than
+# origin.
+#
+# Use `git get <remote> <remote-branch>` to specify a remote branch
+# other than the one with the same name you're localy on.
+#
+# See http://notes.envato.com/developers/rebasing-merge-commits-in-git/
+#
+ 
+STASH=${1-}
+ 
+if [[ $STASH == "--stash" || $STASH == "-s" ]]; then
+    shift
+else
+    STASH=
+fi
+ 
+ORIGIN=${1-origin}
+BRANCH=${2-$(git symbolic-ref --short -q HEAD)}
+ 
+if [[ $BRANCH == "" ]]; then
+    BRANCH=master
+fi
+ 
+echo $ORIGIN/$BRANCH
+ 
+[ $STASH ] && git stash save "git-get on $(date)"
+ 
+git fetch -p $ORIGIN && \
+git rebase -p --stat "$ORIGIN/$BRANCH"
+ 
+[ $STASH ] && git stash pop
