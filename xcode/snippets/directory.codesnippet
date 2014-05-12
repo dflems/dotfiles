@@ -3,21 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>IDECodeSnippetCompletionPrefix</key>
-	<string>strongself</string>
+	<string>directory</string>
 	<key>IDECodeSnippetCompletionScopes</key>
 	<array>
 		<string>CodeBlock</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>__strong __typeof(&lt;#weakSelf#&gt;)strongSelf = &lt;#weakSelf#&gt;;</string>
+	<string>NSURL *directoryURL = [NSURL URLWithString:NSSearchPathForDirectoriesInDomains(&lt;# dirflag #&gt;, NSUserDomainMask, YES).firstObject];</string>
 	<key>IDECodeSnippetIdentifier</key>
-	<string>A310102B-BB55-4681-98E3-803838461B23</string>
+	<string>65A7E5DF-4BDA-4D80-9712-D5720F290C8A</string>
 	<key>IDECodeSnippetLanguage</key>
 	<string>Xcode.SourceCodeLanguage.Objective-C</string>
 	<key>IDECodeSnippetSummary</key>
-	<string>Declare strong reference to weak reference</string>
+	<string>Get the URL for a directory type</string>
 	<key>IDECodeSnippetTitle</key>
-	<string>__strong self</string>
+	<string>Directory URL - Generic</string>
 	<key>IDECodeSnippetUserSnippet</key>
 	<true/>
 	<key>IDECodeSnippetVersion</key>

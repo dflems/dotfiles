@@ -3,21 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>IDECodeSnippetCompletionPrefix</key>
-	<string>strongself</string>
+	<string>caches</string>
 	<key>IDECodeSnippetCompletionScopes</key>
 	<array>
 		<string>CodeBlock</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>__strong __typeof(&lt;#weakSelf#&gt;)strongSelf = &lt;#weakSelf#&gt;;</string>
+	<string>NSURL *cachesDirURL = [NSURL URLWithString:NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES).firstObject];</string>
 	<key>IDECodeSnippetIdentifier</key>
-	<string>A310102B-BB55-4681-98E3-803838461B23</string>
+	<string>C7F9BDC3-E9A1-4E15-BAA3-1A5AB05274D9</string>
 	<key>IDECodeSnippetLanguage</key>
 	<string>Xcode.SourceCodeLanguage.Objective-C</string>
 	<key>IDECodeSnippetSummary</key>
-	<string>Declare strong reference to weak reference</string>
+	<string>Get the URL for the caches directory</string>
 	<key>IDECodeSnippetTitle</key>
-	<string>__strong self</string>
+	<string>Directory URL - Caches</string>
 	<key>IDECodeSnippetUserSnippet</key>
 	<true/>
 	<key>IDECodeSnippetVersion</key>
