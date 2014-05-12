@@ -30,6 +30,8 @@
     dlm = !git-delete-local-merged
     cbn = !git-copy-branch-name
     undo = "!git reset --soft HEAD^"
+    scalpel = reset --hard
+    fuckit = "!git reset --hard origin/master"
 
     # logging
     ls = log --pretty=format:'%C(yellow)%h %C(blue)%ad%C(red)%d %C(reset)%s%C(green) [%an]' --decorate --date=short
