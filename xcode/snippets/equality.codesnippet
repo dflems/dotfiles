@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>equality</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>ClassImplementation</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>#pragma mark - Equality
+
+- (BOOL)isEqual:(id)object {
+    return (self == object) || ([object isKindOfClass:[self class]] &amp;&amp; [self isEqualTo&lt;# objectType #&gt;:object]);
+}
+
+- (BOOL)isEqualTo&lt;# objectType #&gt;:(&lt;# class #&gt; *)object {
+    return &lt;# test equality #&gt;;
+}
+
+- (NSUInteger)hash {
+    return &lt;# hash #&gt;;
+}</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>E92419FA-826E-43FF-A630-F43972D8163A</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Objective-C</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>Generate isEqual: isEqualToX: and hash methods</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Equality Methods</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>
