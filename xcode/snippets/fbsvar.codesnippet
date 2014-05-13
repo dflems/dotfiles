@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>fbsvar</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>CodeBlock</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>&lt;# returnType #&gt; (^&lt;# blockName #&gt;)(&lt;# parameterTypes #&gt;) = ^returnType(&lt;# parameters #&gt;) {
+    &lt;# code #&gt;
+};</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>B7CF04EF-784C-45C0-AD7D-69065B2DD700</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Objective-C</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>Declare a block as a local variable</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Fucking Block Syntax - Variable</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>
