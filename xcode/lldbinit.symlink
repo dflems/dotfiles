@@ -4,7 +4,7 @@ command script import /usr/local/opt/chisel/libexec/fblldb.py
 # Slow Animations
 command alias slowmo expr (void)[(CALayer *)[[[[UIApplication sharedApplication] windows] objectAtIndex:0] layer] setSpeed:.1f]
 command alias normalmo expr (void)[(CALayer *)[[[[UIApplication sharedApplication] windows] objectAtIndex:0] layer] setSpeed:1.f]
- 
+
 # Reveal
 # http://blog.ittybittyapps.com/blog/2013/11/07/integrating-reveal-without-modifying-your-xcode-project
 command alias reveal_load_sim expr (void*)dlopen("/Applications/Reveal.app/Contents/SharedSupport/iOS-Libraries/libReveal.dylib", 0x2);
@@ -13,4 +13,10 @@ command alias reveal_start expr (void)[(NSNotificationCenter*)[NSNotificationCen
 command alias reveal_stop expr (void)[(NSNotificationCenter*)[NSNotificationCenter defaultCenter] postNotificationName:@"IBARevealRequestStop" object:nil];
 
 # Quick NSData-to-NSString
-command regex pud 's/^(.+)$/po [[NSString alloc] initWithData:%1 encoding:4]/'
+command regex stringdata 's/^(.+)$/po [[NSString alloc] initWithData:(%1) encoding:4]/'
+
+# Extended type info (introspection)
+# http://bou.io/ExtendedTypeInfoInObjC.html
+command regex ivars 's/^(.+)$/po [(%1) _ivarDescription]/'
+command regex methods 's/^(.+)$/po [(%1) _shortMethodDescription]/'
+command regex methods_all 's/^(.+)$/po [(%1) _methodDescription]/'
