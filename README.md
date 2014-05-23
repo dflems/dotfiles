@@ -25,10 +25,9 @@ script/bootstrap
 ### .dotfiles of interest
 * [dotfiles.github.com](http://dotfiles.github.com): Growing list of resources (follow [@octodots](http://www.twitter.com/octodots) for the latest-and-greatest)
 * [holman/dotfiles](http://github.com/holman/dotfiles): Bootstrapping, topicality, ZSH config
-* [rtomayko/dotfiles](https://github.com/rtomayko/dotfiles): Scripts
 * [garybernhardt/dotfiles](https://github.com/garybernhardt/dotfiles): Git hotness
 * [mathiasbynens/dotfiles](https://github.com/mathiasbynens/dotfiles): OSX goodness
+* [skwp/dotfiles](https://github.com/skwp/dotfiles): Clean
 
-### todo
-* [cowboy/dotfiles](https://github.com/cowboy/dotfiles)
-* [skwp/dotfiles](https://github.com/skwp/dotfiles)
+### TODO
+* [Caskfile](https://github.com/mathiasbynens/dotfiles/blob/master/Caskfile)

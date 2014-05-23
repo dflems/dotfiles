@@ -1,0 +1,36 @@
+#!/bin/sh
+# Inspired by "manh" by Ben Alman
+
+# Usage
+if [[ "$1" == "-h" || "$1" == "--help" ]]; then cat <<HELP
+Manpage-as-HTML Viewer
+
+Usage: $(basename "$0") [section] name
+
+View a manpage as HTML in the default viewer. Because sometimes
+you don't want to view manpages in the terminal.
+HELP
+exit; fi
+
+if [ ! "$1" ]; then
+  echo 'What manual page do you want?!'
+  exit
+fi
+
+# Make sure man2html is installed
+brew install man2html >/dev/null 2>/dev/null
+
+# Create cache dir if it doesn't exist
+cache_dir=$ZSH/caches/manhtml
+[[ -e "$cache_dir" ]] || mkdir -p "$cache_dir"
+
+# Figure out what the filename should be.
+file="$cache_dir/${2:+$2.}$1.html"
+
+# Create HTML if it doesn't exist.
+if [ ! -f "$file" ]; then
+  man "$@" | man2html > "$file"
+fi
+
+# Open HTML (if it does exist).
+[[ -e "$file" ]] && open "$file"
