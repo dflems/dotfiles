@@ -54,3 +54,6 @@ cask install xscope
 # these were broken last time i tried
 #cask install transmission
 #cask install wireshark
+
+# add Caskroom to Alfred's scope
+cask alfred link
