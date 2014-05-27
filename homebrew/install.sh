@@ -14,5 +14,6 @@ fi
 
 # Install homebrew packages
 brew bundle "${0%/*}/Brewfile"
+brew bundle "${0%/*}/Caskfile"
 
 exit 0
