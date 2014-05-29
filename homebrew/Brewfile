@@ -18,11 +18,11 @@ install wget --enable-iri
 install vim --override-system-vi
 
 # Install other useful binaries
-install ack
 install git
 install ngrep
 install node
 install rename
+install the_silver_searcher
 install trash
 install tree
 
