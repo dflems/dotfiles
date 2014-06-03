@@ -44,16 +44,14 @@ cask install the-unarchiver
 cask install totalterminal
 cask install tower
 cask install trailer
+cask install transmission
 cask install tunnelblick
 cask install uncrustifyx
 cask install virtualbox
 cask install vlc
 cask install wasted
 cask install xscope
-
-# these were broken last time i tried
-#cask install transmission
-#cask install wireshark
+cask install wireshark
 
 # add Caskroom to Alfred's scope
 cask alfred link
