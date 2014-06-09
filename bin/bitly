@@ -1,0 +1,32 @@
+#!/usr/bin/env ruby
+
+require 'rubygems'
+
+['bitly'].each do |gem|
+  begin
+    require gem
+  rescue LoadError
+    puts "You need to install #{gem}: gem install #{gem}"
+    exit!(1)
+  end
+end
+
+username = ENV['BITLY_API_USERNAME']
+api_key = ENV['BITLY_API_KEY']
+
+if username.nil? || api_key.nil?
+  puts "You need to declare BITLY_API_USERNAME and BITLY_API_KEY as environment variables."
+end
+
+if ARGV[0].nil?
+   puts "You need to specify a URL to shorten."
+   exit!(1)
+end
+
+Bitly.use_api_version_3
+bitly = Bitly.new(username, api_key)
+
+url = bitly.shorten(ARGV[0]).short_url
+
+IO.popen('pbcopy', 'w') { |f| f << url }
+puts url
