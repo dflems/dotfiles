@@ -1,5 +1,8 @@
-# Use atom as the editor of choice (https://atom.io/)
-export EDITOR='atom'
+# Only set this if we haven't set $EDITOR up somewhere else previously.
+if [[ "$EDITOR" == "" ]] ; then
+  # Use sublime for my editor.
+  export EDITOR='subl'
+fi
 
 # Java Home
 if [ -f /usr/libexec/java_home ]; then

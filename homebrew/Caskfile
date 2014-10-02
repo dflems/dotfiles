@@ -9,7 +9,6 @@ cask install alfred
 cask install appcleaner
 cask install appium
 cask install audacity
-cask install atom
 cask install caffeine
 cask install cakebrew
 cask install charles
