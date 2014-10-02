@@ -8,7 +8,7 @@ alias lscleanup="/System/Library/Frameworks/CoreServices.framework/Frameworks/La
 alias cleanup="find . -type f -name '*.DS_Store' -ls -delete"
 
 # Flush Directory Service cache
-alias flush="dscacheutil -flushcache && killall -HUP mDNSResponder"
+alias flushdns="dscacheutil -flushcache && killall -HUP mDNSResponder"
 
 # Empty the Trash on all mounted volumes and the main HDD
 # Also, clear Apple’s System Logs to improve shell startup speed
