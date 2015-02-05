@@ -29,6 +29,7 @@
     amend = commit --amend -C HEAD
     dlm = !git-delete-local-merged
     cbn = !git-copy-branch-name
+    rc = !git-rank-contributors
     undo = "!git reset --soft HEAD^"
     scalpel = reset --hard
     fuckit = "!git reset --hard origin/master"
