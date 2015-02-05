@@ -3,9 +3,8 @@ Mostly based on [holman's](http://github.com/holman) topically-organized dotfile
 
 ### prerequisites
 * Mac OS X Lion or later
-* [XCode](https://itunes.apple.com/us/app/xcode/id497799835?mt=12) and [Command Line Tools](http://stackoverflow.com/questions/9329243#answer-9329325)
+* [XCode](https://itunes.apple.com/us/app/xcode/id497799835?mt=12)
 * [Homebrew](http://brew.sh) package manager
-* [rbenv](https://github.com/sstephenson/rbenv#installation) is optional, but recommended `brew install rbenv ruby-build`
 
 ### so, how does this work?
 * Installs some Homebrew dependencies and neat extensions.
@@ -29,5 +28,3 @@ script/bootstrap
 * [mathiasbynens/dotfiles](https://github.com/mathiasbynens/dotfiles): OSX goodness
 * [skwp/dotfiles](https://github.com/skwp/dotfiles): Clean
 
-### TODO
-* [Caskfile](https://github.com/mathiasbynens/dotfiles/blob/master/Caskfile)

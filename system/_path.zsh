@@ -1,6 +1,3 @@
-# rbenv shims
-export PATH="$HOME/.rbenv/shims:$PATH"
-
 # npm packages
 export PATH="/usr/local/share/npm/bin:$PATH"
 export NODE_PATH="/usr/local/lib/node"
