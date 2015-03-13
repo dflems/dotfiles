@@ -1,0 +1,105 @@
+#!/usr/bin/env ruby
+# by @dflems - do whatever with this.
+
+VERSION='0.0.1'
+
+require 'set'
+require 'shellwords'
+require 'optparse'
+require 'tmpdir'
+require 'fileutils'
+
+# parse options
+archs = Set.new
+output_path = nil
+begin
+  OptionParser.new do |opts|
+    opts.version = VERSION
+    opts.banner = "Usage: #{opts.program_name} [options]"
+    opts.on('-o', '--output PATH', 'output path') do |value|
+      value = value.strip.downcase
+      output_path = File.absolute_path(value) unless value.empty?
+    end
+    opts.on('-a', '--archs x86_64,i386', Array, 'architectures') do |list|
+      list.map{|x| x.strip.downcase}.each do |arch|
+        archs << arch unless arch.empty?
+      end
+    end
+  end.parse!
+rescue OptionParser::ParseError => e
+  abort "Error: #{e.message}"
+end
+
+# validate output path
+abort "Error: Specify an output path with --output." if !output_path
+output_dir = File.dirname(output_path)
+abort "Error: #{output_dir} is not writable." unless File.writable?(output_dir)
+
+# validate
+lib_paths = ARGV.map{|f| File.absolute_path(f)}
+if lib_paths.empty?
+  abort "Error: No libraries specified."
+else
+  for path in ARGV
+    abort "Error: \"#{path}\" does not exist." unless File.exists?(path)
+    abort "Error: \"#{path}\" is not a file." unless File.file?(path)
+  end
+end
+
+# capture stdout, exiting if nonzero
+def cmd(*args)
+  command = Shellwords.join(args)
+  out = `#{command}`.strip
+  unless $?.success?
+    puts "Error: command failed: #{command}"
+    exit $?.exitstatus
+  end
+  out
+end
+
+# output thin library
+def make_thin(dir, lib_path, arch)
+  dir = File.join(dir, arch)
+  FileUtils.mkdir_p(dir)
+  cmd('lipo', '-extract', arch, lib_path, '-o', File.join(dir, File.basename(lib_path)))
+end
+
+# human filesize
+def pretty_filesize(path)
+  bytes = File.size(path)
+  units = %w{B KB MB GB TB}
+  e = (Math.log(bytes)/Math.log(1024)).floor
+  s = "%.3f" % (bytes.to_f / 1024**e)
+  s.sub(/\.?0*$/, " "+units[e])
+end
+
+# warning
+wholesale = false
+if archs.empty?
+  puts 'WARNING: No architectures specified. Combining all libraries wholesale.'
+  wholesale = true
+end
+
+# work in a tmp dir
+puts '...'
+Dir.mktmpdir do |tmpdir|
+  for lib_path in lib_paths
+    lib_archs = cmd('lipo', '-info', lib_path).split(':').last.strip.split(/\s/)
+    for arch in (wholesale ? lib_archs : archs)
+      make_thin(tmpdir, lib_path, arch)
+    end
+    archs.merge(lib_archs)
+  end
+
+  for arch in archs
+    files = Dir.glob(File.join(tmpdir, arch, '*'))
+    path = File.join(tmpdir, "#{arch}.merged")
+    cmd('libtool', '-static', *files, '-o', path)
+  end
+
+  all = Dir.glob(File.join(tmpdir, '*.merged'))
+  cmd('lipo', '-create', *all, '-o', output_path)
+end
+
+puts "Created #{File.basename(output_path)} (#{pretty_filesize(output_path)})"
+puts "ARCHS: #{archs.to_a.join(', ')}"
