@@ -11,15 +11,6 @@ fi
 brew update
 brew upgrade
 
-# install GNU core utilities (those that come with OS X are outdated)
-brew install coreutils
-brew install findutils
-brew install gnu-sed --default-names
-brew install moreutils
-
-# install GRC for coloring
-brew install grc
-
 # install wget with IRI support
 brew install wget --enable-iri
 
