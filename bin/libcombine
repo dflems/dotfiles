@@ -17,7 +17,7 @@ begin
     opts.version = VERSION
     opts.banner = "Usage: #{opts.program_name} [options]"
     opts.on('-o', '--output PATH', 'output path') do |value|
-      value = value.strip.downcase
+      value = value.strip
       output_path = File.absolute_path(value) unless value.empty?
     end
     opts.on('-a', '--archs x86_64,i386', Array, 'architectures') do |list|
