@@ -1,6 +1,4 @@
 {
-	"hot_exit": false,
-	"remember_open_files": false,
 	"color_scheme": "Packages/Theme - Spacegray/base16-ocean.dark.tmTheme",
 	"ensure_newline_at_eof_on_save": true,
 	"folder_exclude_patterns":
@@ -12,10 +10,13 @@
 		"tmp/cache",
 		"public/__assets"
 	],
+	"follow_symlinks": true,
 	"font_size": 12.0,
+	"hot_exit": false,
 	"ignored_packages":
 	[
 		"Vintage"
 	],
+	"remember_open_files": false,
 	"theme": "Spacegray.sublime-theme"
 }
