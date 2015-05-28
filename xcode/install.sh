@@ -1,16 +1,25 @@
-#!/bin/sh
+#!/usr/bin/env ruby
+require 'fileutils'
+SCRIPT_DIR = File.expand_path(File.dirname(__FILE__))
+USERDATA_DIR = File.expand_path('~/Library/Developer/Xcode/UserData')
 
-LIB_SNIPPETS="$(readlink -f ~)/Library/Developer/Xcode/UserData/CodeSnippets"
-DOT_SNIPPETS="$(readlink -f $(dirname "$0")/snippets)"
+# replace the first dir with a symlink to the second dir
+def replace_and_link_dir(lib_dir, dot_dir)
+  lib_dir = File.join(USERDATA_DIR, lib_dir)
+  dot_dir = File.join(SCRIPT_DIR, dot_dir)
+  if File.exists?(lib_dir)
+    if File.symlink?(lib_dir)
+      # if a symlink, just remove it
+      FileUtils.rm_f(lib_dir)
+    else
+      # otherwise, back it up
+      FileUtils.mv(lib_dir, "#{lib_dir}.#{Time.now.to_i}.bak")
+    end
+  end
+  FileUtils.mkdir_p(File.dirname(lib_dir))
+  FileUtils.ln_s(dot_dir, lib_dir)
+end
 
-if [ -L "$LIB_SNIPPETS" ]; then
-  # if already a symlink, just remove it
-  rm "$LIB_SNIPPETS"
-elif [ -d "$LIB_SNIPPETS" ]; then
-  # if it's a hard directory, back it up
-  mv "$LIB_SNIPPETS" "$LIB_SNIPPETS-bak-$(date +%s)"
-fi
-
-mkdir -p "$(dirname "$LIB_SNIPPETS")"
-
-ln -s "$DOT_SNIPPETS" "$LIB_SNIPPETS"
+# install snippets and themes
+replace_and_link_dir('CodeSnippets', 'snippets')
+replace_and_link_dir('FontAndColorThemes', 'themes')
