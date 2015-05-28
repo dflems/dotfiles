@@ -17,6 +17,10 @@ brew install wget --enable-iri
 # install more recent versions of some OS X tools
 brew install vim --override-system-vi
 
+# ruby environment
+brew install chruby
+brew install ruby-install
+
 # install other useful binaries
 brew install chisel
 brew install git
