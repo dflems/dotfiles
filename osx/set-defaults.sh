@@ -6,8 +6,8 @@
 defaults write NSGlobalDomain AppleHighlightColor -string "0.764700 0.976500 0.568600"
 
 # Disable press-and-hold for keys in favor of key repeat (fast)
-#defaults write -g ApplePressAndHoldEnabled -bool false
-#defaults write NSGlobalDomain KeyRepeat -int 0
+defaults write -g ApplePressAndHoldEnabled -bool false
+defaults write NSGlobalDomain KeyRepeat -int 0
 
 # Use AirDrop over every interface. srsly this should be a default.
 defaults write com.apple.NetworkBrowser BrowseAllInterfaces 1
