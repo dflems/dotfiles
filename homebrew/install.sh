@@ -7,9 +7,12 @@ then
   ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" > /tmp/homebrew-install.log
 fi
 
+# echo on
+set -x
+
 # latest 'n' greatest
 brew update
-brew upgrade
+brew upgrade --all
 
 # install wget with IRI support
 brew install wget --enable-iri
