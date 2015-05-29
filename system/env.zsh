@@ -1,7 +1,10 @@
-# Only set this if we haven't set $EDITOR up somewhere else previously.
 if [[ "$EDITOR" == "" ]] ; then
-  # Use sublime for my editor.
-  export EDITOR='subl'
+  # Use `subl` as the editor if it's on the path
+ if type subl >/dev/null 2>&1; then
+    export EDITOR='subl'
+  else
+    export EDITOR='vi'
+  fi
 fi
 
 # Java Home
@@ -12,5 +15,5 @@ fi
 # Python w/ virtualenv wrapper
  export VIRTUALENVWRAPPER_PYTHON=$(brew --prefix)/bin/python
  if [ -f $(brew --prefix)/bin/virtualenvwrapper_lazy.sh ]; then
-   . $(brew --prefix)/bin/virtualenvwrapper_lazy.sh
+  . $(brew --prefix)/bin/virtualenvwrapper_lazy.sh
  fi

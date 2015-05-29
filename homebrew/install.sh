@@ -1,8 +1,7 @@
 #!/bin/sh
 
 # check for Homebrew
-if test ! $(which brew)
-then
+if ! type brew >/dev/null 2>&1; then
   echo "Installing Homebrew for you."
   ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" > /tmp/homebrew-install.log
 fi
