@@ -17,6 +17,9 @@ alias mv='nocorrect mv'
 alias cp='nocorrect cp'
 alias mkdir='nocorrect mkdir'
 
+# Pipe my public key to my clipboard
+alias pubkey="more ~/.ssh/id_rsa.pub | pbcopy | echo '=> Public key copied to pasteboard.'"
+
 # Clean up LaunchServices to remove duplicates in the “Open With” menu
 alias lscleanup="/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user && killall Finder"
 
@@ -80,6 +83,9 @@ alias chromekill="ps ux | grep '[C]hrome Helper --type=renderer' | grep -v exten
 # find . -name .gitattributes | map dirname
 alias map="xargs -n1"
 
+# chop off the first word
+alias first="awk '{print \$1}'"
+
 # Trim new lines and copy to clipboard
 alias pb="tr -d '\n' | pbcopy"
 
@@ -98,6 +104,9 @@ command -v sha1sum > /dev/null || alias sha1sum="shasum"
 # Ring the terminal bell, and put a badge on Terminal.app’s Dock icon
 # (useful when executing time-consuming commands)
 alias badge="tput bel"
+
+# Plays the sound associated with completion
+alias glass="afplay /System/Library/Sounds/Glass.aiff"
 
 # har har har
 alias bitch,='sudo'
