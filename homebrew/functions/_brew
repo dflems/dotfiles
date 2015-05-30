@@ -1,0 +1,5 @@
+# brew ships with zsh completions
+local bc_path="$(brew --prefix 2>/dev/null)/Library/Contributions/brew_zsh_completion.zsh"
+if [ -f "$bc_path" ]; then
+  source "$bc_path"
+fi
