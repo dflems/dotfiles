@@ -1,6 +1,0 @@
-#!/bin/sh
-# Usage: addr [<if>]
-# Show IPv4 address for interface <if> or all interfaces with
-# no <if> given.
-
-ifconfig -a | grep 'inet ' | grep -v '127.0.0.1' | awk '{ print $2 }'
