@@ -1,14 +1,18 @@
-#!/bin/sh
-# Inspired by "manh" by Ben Alman
+#!/usr/bin/env bash
 
-# Usage
 if [[ "$1" == "-h" || "$1" == "--help" ]]; then cat <<HELP
 Manpage-as-HTML Viewer
+http://benalman.com/
 
 Usage: $(basename "$0") [section] name
 
 View a manpage as HTML in the default viewer. Because sometimes
 you don't want to view manpages in the terminal.
+
+Copyright (c) 2012 "Cowboy" Ben Alman
+Modified 2015 Dan Fleming
+Licensed under the MIT license.
+http://benalman.com/about/license
 HELP
 exit; fi
 
@@ -17,20 +21,63 @@ if [ ! "$1" ]; then
   exit
 fi
 
-# Make sure man2html is installed
-brew install man2html >/dev/null 2>/dev/null
-
-# Create cache dir if it doesn't exist
-cache_dir=$ZSH/caches/manhtml
-[[ -e "$cache_dir" ]] || mkdir -p "$cache_dir"
+cache_dir=$DOTFILES/caches/manh
 
 # Figure out what the filename should be.
 file="$cache_dir/${2:+$2.}$1.html"
 
+# Create directory if it doesn't exist.
+[[ -e "$cache_dir" ]] || mkdir -p "$cache_dir"
+
+# Inline CSS
+inline_css=$(tr -s '\040\011\012\015' ' ' <<EOF
+body {
+  color: #576D75;
+  background: #FDF6E3;
+  padding: 0;
+  margin: 0 0 3em 1.5em;
+  font-size: 1em;
+}
+
+h2 {
+  color: #BD3700;
+}
+
+b {
+  color: #93A1A1;
+}
+
+i {
+  font-style: normal;
+  text-decoration: underline;
+  color: #BD3700;
+}
+
+h2, pre {
+  font-family: Monaco, monospace;
+}
+
+pre {
+  margin: -0.5em 0 -1.5em;
+}
+
+body > hr, body > address {
+  display: none;
+}
+EOF)
+
 # Create HTML if it doesn't exist.
-if [ ! -f "$file" ]; then
-  man "$@" | man2html > "$file"
-fi
+[[ ! -e "$file" ]] && man "$@" >/dev/null && cat > "$file" <<EOF
+<!doctype html>
+<html>
+<style type="text/css">
+${inline_css}
+</style>
+<body>
+$(man "$@" 2>/dev/null | man2html -bare -nodepage)
+</body>
+</html>
+EOF
 
 # Open HTML (if it does exist).
 [[ -e "$file" ]] && open "$file"
