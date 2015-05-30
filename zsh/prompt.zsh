@@ -1,3 +1,17 @@
+# magic: http://www.dotfiles.org/~_why/.zshrc
+set_title() {
+  a=${(V)1//\%/\%\%}
+  a=$(print -Pn "%40>...>$a" | tr -d "\n")
+  case $TERM in
+  screen)
+    print -Pn "\ek$a:$3\e\\"
+    ;;
+  xterm*|rxvt)
+    print -Pn "\e]2;$2\a"
+    ;;
+  esac
+}
+
 git_prompt_info() {
   # get shortcode (bail if not found)
   local shortcode=$(git rev-parse --short HEAD 2>/dev/null)
@@ -25,7 +39,7 @@ git_prompt_info() {
 }
 
 precmd() {
-  title "zsh" "%m" "%55<...<%~"
+  set_title "zsh" "$USER@%m" "%55<...<%~"
 }
 
 # path + git info + cursor (red if last command failed, otherwise yellow)
