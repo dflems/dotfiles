@@ -1,1 +1,1 @@
-cd $PROJECTS/$1;
+cd $PROJECT_HOME/$1;
