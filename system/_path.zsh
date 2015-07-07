@@ -8,6 +8,9 @@ export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
 # dotfiles bin
 export PATH="$ZSH/bin:$ZSH/git/bin:$PATH"
 
+# MacTeX
+export PATH="$PATH:/Library/TeX/Distributions/Programs/texbin"
+
 # local bin priority
 export PATH="./bin:$PATH"
 
