@@ -5,23 +5,23 @@
 	<key>DVTConsoleDebuggerInputTextColor</key>
 	<string>0.319563 0.371489 0.414287 1</string>
 	<key>DVTConsoleDebuggerInputTextFont</key>
-	<string>SourceCodePro-Regular - 13.0</string>
+	<string>Menlo-Bold - 12.0</string>
 	<key>DVTConsoleDebuggerOutputTextColor</key>
 	<string>0.319563 0.371489 0.414287 1</string>
 	<key>DVTConsoleDebuggerOutputTextFont</key>
-	<string>SourceCodePro-Regular - 13.0</string>
+	<string>Menlo-Regular - 12.0</string>
 	<key>DVTConsoleDebuggerPromptTextColor</key>
 	<string>0.689693 0.296345 0.345124 1</string>
 	<key>DVTConsoleDebuggerPromptTextFont</key>
-	<string>SourceCodePro-Regular - 13.0</string>
+	<string>Menlo-Bold - 12.0</string>
 	<key>DVTConsoleExectuableInputTextColor</key>
 	<string>0.319563 0.371489 0.414287 1</string>
 	<key>DVTConsoleExectuableInputTextFont</key>
-	<string>SourceCodePro-Regular - 13.0</string>
+	<string>Menlo-Regular - 12.0</string>
 	<key>DVTConsoleExectuableOutputTextColor</key>
 	<string>0.319563 0.371489 0.414287 1</string>
 	<key>DVTConsoleExectuableOutputTextFont</key>
-	<string>SourceCodePro-Semibold - 13.0</string>
+	<string>Menlo-Bold - 12.0</string>
 	<key>DVTConsoleTextBackgroundColor</key>
 	<string>0.92606 0.933418 0.949697 1</string>
 	<key>DVTConsoleTextInsertionPointColor</key>
@@ -51,7 +51,7 @@
 		<key>xcode.syntax.comment.doc</key>
 		<string>0.319563 0.371489 0.414287 1</string>
 		<key>xcode.syntax.comment.doc.keyword</key>
-		<string>0.319563 0.371489 0.414287 1</string>
+		<string>0.475362 0.556905 0.621693 1</string>
 		<key>xcode.syntax.identifier.class</key>
 		<string>0.488775 0.560832 0.639763 1</string>
 		<key>xcode.syntax.identifier.class.system</key>
