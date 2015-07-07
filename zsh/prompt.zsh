@@ -22,10 +22,13 @@ git_prompt_info() {
 
   # render unpushed / unpulled arrows
   if [[ "$branch" != "" ]]; then
-    local arrows=""
-    (( $(command git rev-list --right-only --count HEAD...@'{u}' 2>/dev/null) > 0 )) && arrows='⇣'
-    (( $(command git rev-list --left-only --count HEAD...@'{u}' 2>/dev/null) > 0 )) && arrows+='⇡'
-    [[ "$arrows" != "" ]] && arrows=" ${arrows}"
+    local remote_branch=$(git rev-parse --abbrev-ref @'{u}' 2>/dev/null)
+    if [[ "$remote_branch" != "" ]]; then
+      local arrows=""
+      (( $(command git rev-list --right-only --count HEAD...@'{u}' 2>/dev/null) > 0 )) && arrows='⇣'
+      (( $(command git rev-list --left-only --count HEAD...@'{u}' 2>/dev/null) > 0 )) && arrows+='⇡'
+      [[ "$arrows" != "" ]] && arrows=" ${arrows}"
+    fi
   else
     branch="@$shortcode"
   fi
