@@ -8,6 +8,9 @@ export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
 # dotfiles bin
 export PATH="$ZSH/bin:$ZSH/git/bin:$PATH"
 
+# depot tools
+export PATH="$PATH:$PROJECT_HOME/depot_tools"
+
 # MacTeX
 export PATH="$PATH:/Library/TeX/Distributions/Programs/texbin"
 
