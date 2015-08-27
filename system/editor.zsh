@@ -11,9 +11,9 @@ fi
 # Editor function
 function e() {
   if [ "$1" = "" ] ; then
-    exec $EDITOR .
+    $EDITOR .
   else
-    exec $EDITOR "$1"
+    $EDITOR "$1"
   fi
 }
 
