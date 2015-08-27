@@ -1,0 +1,36 @@
+#!/usr/bin/env ruby
+# Open a web pull request from the current branch
+
+def make_hash(host, path)
+  parts = path.split('/')
+  return nil unless parts.count == 2
+  return { :host => host, :path => path, :user => parts[0], :repo => parts[1] }
+end
+
+def parse_url(url)
+  if url
+    https = url.match(/^https:\/\/(.*?)\/(.*?)\.git/)
+    return make_hash(https[1], https[2]) if https
+
+    ssh = url.match(/^(?:.*?@)(.*?):(.*?)\.git$/)
+    return make_hash(ssh[1], ssh[2]) if ssh
+  end
+  return nil
+end
+
+# make sure we're tracking a remote branch
+tracking = `git rev-parse --abbrev-ref --symbolic-full-name @{u} 2>/dev/null`.strip
+abort "This branch isn't tracking a remote branch." if tracking.empty?
+remote_name, branch_name = tracking.split('/', 2)
+
+# get endpoints for remotes
+remote_endpoints = Hash[`git remote -v`.strip.split("\n").map{|x| x.split(/\s+/)}.select{|x| x[2] == '(fetch)'}.map{|x| x[0..1]}]
+remote = parse_url(remote_endpoints[remote_name]) || abort("No remote named \"#{remote_name}\"")
+upstream = parse_url(remote_endpoints["upstream"]) || abort('No remote named "upstream"')
+
+# both origins need to be on same host to create a PR
+abort "Remotes must be on same host" unless remote[:host] == upstream[:host] 
+
+# construct url (assuming we're merging to remote master)
+url = "https://#{upstream[:host]}/#{upstream[:path]}/compare/#{upstream[:user]}:master...#{remote[:user]}:#{branch_name}?expand=1"
+system('open', url)
