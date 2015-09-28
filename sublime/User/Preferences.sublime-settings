@@ -11,7 +11,7 @@
 		"public/__assets"
 	],
 	"follow_symlinks": true,
-	"font_size": 12.0,
+	"font_size": 14.0,
 	"hot_exit": false,
 	"ignored_packages":
 	[
