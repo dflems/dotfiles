@@ -1,7 +1,3 @@
-# npm packages
-export PATH="/usr/local/share/npm/bin:$PATH"
-export NODE_PATH="/usr/local/lib/node"
-
 # homebrew
 export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
 
@@ -13,6 +9,9 @@ export PATH="$PATH:$PROJECT_HOME/depot_tools"
 
 # MacTeX
 export PATH="$PATH:/Library/TeX/Distributions/Programs/texbin"
+
+# local npm
+export PATH="./node_modules/.bin:$PATH"
 
 # local bin priority
 export PATH="./bin:$PATH"
