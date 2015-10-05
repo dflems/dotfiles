@@ -8,7 +8,8 @@
 		".hg",
 		"CVS",
 		"tmp/cache",
-		"public/__assets"
+		"public/__assets",
+		"node_modules"
 	],
 	"follow_symlinks": true,
 	"font_size": 14.0,
