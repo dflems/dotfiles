@@ -6,6 +6,13 @@ if ! type brew >/dev/null 2>&1; then
   ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" > /tmp/homebrew-install.log
 fi
 
+# install completions into dynamic fpath
+bc_path="$(brew --prefix 2>/dev/null)/Library/Contributions/brew_zsh_completion.zsh"
+if [ -f "$bc_path" ]; then
+  mkdir -p "$HOME/.fpath"
+  ln -sf "$bc_path" "$HOME/.fpath/_brew"
+fi
+
 # echo on
 set -x
 

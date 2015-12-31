@@ -7,7 +7,14 @@ fi
 export LSCOLORS="exfxcxdxbxegedabagacad"
 export CLICOLOR=true
 
-for dir ($ZSH/**/functions) fpath=($dir $fpath) && autoload -U $dir/*(:t)
+for dir ($HOME/.fpath $ZSH/**/functions)
+do
+  if [ -d "$dir" ]
+  then
+    fpath=($dir $fpath)
+    autoload -U $dir/*(:t)
+  fi
+done
 
 HISTFILE=~/.zsh_history
 HISTSIZE=10000
