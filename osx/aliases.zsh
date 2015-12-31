@@ -54,9 +54,8 @@ alias plistbuddy="/usr/libexec/PlistBuddy"
 alias flushdns="dscacheutil -flushcache && killall -HUP mDNSResponder 2>/dev/null"
 
 # IP addresses
-alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
-alias ips="ifconfig -a | grep 'inet ' | grep -v '127.0.0.1' | awk '{ print \$2 }'"
-alias addr="ips"
+alias extip="dig +short myip.opendns.com @resolver1.opendns.com"
+alias addr="ifconfig -a | grep 'inet ' | grep -v '127.0.0.1' | awk '{ print \$2 }'"
 
 # http://xkcd.com/530
 alias stfu="osascript -e 'set volume output muted true'"
