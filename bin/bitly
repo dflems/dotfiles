@@ -2,11 +2,11 @@
 
 require 'rubygems'
 
-['bitly'].each do |gem|
+['bitly'].each do |name|
   begin
-    require gem
+    require name
   rescue LoadError
-    puts "You need to install #{gem}: gem install #{gem}"
+    puts "You need to install #{name}: gem install #{name}"
     exit!(1)
   end
 end
