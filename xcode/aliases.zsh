@@ -1,2 +1,2 @@
-# Quick-open iOS Simulator
-alias ios="open /Applications/Xcode.app/Contents/Applications/iOS\ Simulator.app"
+alias simopen="open -b com.apple.iphonesimulator"
+alias simctl="xcrun simctl"
