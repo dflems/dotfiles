@@ -26,7 +26,7 @@ remote_name, branch_name = tracking.split('/', 2)
 # get endpoints for remotes
 remote_endpoints = Hash[`git remote -v`.strip.split("\n").map{|x| x.split(/\s+/)}.select{|x| x[2] == '(fetch)'}.map{|x| x[0..1]}]
 remote = parse_url(remote_endpoints[remote_name]) || abort("No remote named \"#{remote_name}\"")
-upstream = parse_url(remote_endpoints["upstream"]) || abort('No remote named "upstream"')
+upstream = parse_url(remote_endpoints["upstream"]) || parse_url(remote_endpoints["origin"]) || abort('No remote named "upstream" or "origin"')
 
 # both origins need to be on same host to create a PR
 abort "Remotes must be on same host" unless remote[:host] == upstream[:host] 

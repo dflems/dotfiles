@@ -2,4 +2,4 @@
 #
 # Delete all local branches that have been merged into HEAD.
 
-git branch -d `git branch --merged | grep -v '^*' | grep -v 'master' | tr -d '\n'`
+git branch --merged | grep -v '^*' | grep -v 'master' | tr -d '\n' | xargs -L1 git branch -d
