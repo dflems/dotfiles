@@ -23,3 +23,20 @@ end
 # install snippets and themes
 replace_and_link_dir('CodeSnippets', 'snippets')
 replace_and_link_dir('FontAndColorThemes', 'themes')
+
+# install ibeam
+# https://github.com/egold/better-xcode-ibeam-cursor
+
+def install_ibeam(root)
+  return unless File.directory?(root)
+  resources = File.join('Contents/SharedFrameworks/DVTKit.framework/Resources')
+
+  old_path = File.join(resources, 'DVTIbeamCursor.tiff')
+  new_path = File.join(SCRIPT_DIR, 'DVTIbeamCursor.tiff')
+
+  system('sudo', 'cp', old_path, "#{old_path}.bak")
+  system('sudo', 'cp', new_path, old_path)
+end
+
+install_ibeam('/Applications/Xcode.app')
+install_ibeam('/Applications/Xcode-beta.app')
