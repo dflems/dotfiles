@@ -18,7 +18,6 @@
     ds = diff --staged
     po = push origin
     aa = add --all
-    reup = !git get
 
     # stash
     sl = stash list
@@ -33,6 +32,8 @@
     undo = "!git reset --soft HEAD^"
     scalpel = reset --hard
     fuckit = "!git reset --hard origin/master"
+    rup = "!git fetch upstream master && git rebase upstream/master"
+    mup = "!git fetch upstream master && git merge upstream/master"
 
     # logging
     ls = log --pretty=format:'%C(yellow)%h %C(blue)%ad%C(red)%d %C(reset)%s%C(green) [%an]' --decorate --date=short
