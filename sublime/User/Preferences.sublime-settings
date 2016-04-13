@@ -9,7 +9,8 @@
 		"CVS",
 		"tmp/cache",
 		"public/__assets",
-		"node_modules"
+		"node_modules",
+		"buck-out"
 	],
 	"follow_symlinks": true,
 	"font_size": 14.0,
