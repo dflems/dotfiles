@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+echo "Quitting application (if open)"
+osascript -e 'quit app "App Store"'
+rm -rf ~/Library/Caches/com.apple.appstore
+
+serv_reset () {
+    echo "Resetting $1"
+    killall "$1" 2>/dev/null
+    rm -rf "~/Library/Caches/$1"
+}
+
+serv_reset "storeaccountd"
+serv_reset "storeassetd"
+serv_reset "storedownloadd"
+serv_reset "storeinappd"
+echo "Done!"
