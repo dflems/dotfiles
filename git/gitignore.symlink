@@ -16,3 +16,4 @@ zeus.json
 *.gcda
 *.gcno
 .LSOverride
+dflems.rake

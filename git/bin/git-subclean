@@ -1,5 +1,10 @@
 #!/bin/bash
 
-git submodule foreach --recursive 'git reset --hard HEAD && git clean -dffx'
-git submodule sync
-git submodule update --init --recursive
+if [ -z "$1" ]; then
+  git-collect-submodules | xargs -L1 git-subclean
+else
+  cd "$1"
+  git reset -q --hard HEAD
+  git clean -dffx
+  echo -e "\033[0;34m$1\033[0m \n  $(git log --color --oneline -n 1)"
+fi

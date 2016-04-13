@@ -9,10 +9,10 @@ end
 
 def parse_url(url)
   if url
-    https = url.match(/^https:\/\/(.*?)\/(.*?)\.git/)
+    https = url.match(/^https:\/\/(.*?)\/(.*?)(?:\.git)?$/)
     return make_hash(https[1], https[2]) if https
 
-    ssh = url.match(/^(?:.*?@)(.*?):(.*?)\.git$/)
+    ssh = url.match(/^(?:.*?@)(.*?):(.*?)\.git?$/)
     return make_hash(ssh[1], ssh[2]) if ssh
   end
   return nil
