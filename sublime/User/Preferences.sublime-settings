@@ -13,6 +13,7 @@
 		"buck-out"
 	],
 	"follow_symlinks": true,
+	"font_face": "FiraCode-Regular",
 	"font_size": 14.0,
 	"hot_exit": false,
 	"ignored_packages":
@@ -20,5 +21,6 @@
 		"Vintage"
 	],
 	"remember_open_files": false,
+	"save_on_focus_list": true,
 	"theme": "Spacegray.sublime-theme"
 }
