@@ -32,8 +32,10 @@
     undo = "!git reset --soft HEAD^"
     scalpel = reset --hard
     fuckit = "!git reset --hard origin/master"
+    irup = "!git fetch upstream master && git rebase -i upstream/master"
     rup = "!git fetch upstream master && git rebase upstream/master"
     mup = "!git fetch upstream master && git merge upstream/master"
+    cf = clone-fork
 
     # logging
     ls = log --pretty=format:'%C(yellow)%h %C(blue)%ad%C(red)%d %C(reset)%s%C(green) [%an]' --decorate --date=short

@@ -1,0 +1,74 @@
+#!/usr/bin/env ruby
+require 'json'
+
+#
+# Parse git repo URL
+#
+class GitRepo
+  attr_reader :host, :user, :repo
+
+  def initialize(url)
+    m = url ? url.match(/^https:\/\/(.*?)\/(.*?)\/(.*?)(?:\.git)?$/) || url.match(/^git@(.*?):(.*?)\/(.*?)\.git?$/) : nil
+    raise ArgumentError.new("invalid git URL: #{url}") unless m
+    @host = m[1]
+    @user = m[2]
+    @repo = m[3]
+  end
+
+  def ssh_url
+    "git@#{@host}:#{@user}/#{@repo}.git"
+  end
+
+  def https_url
+    "https://#{@host}/#{@user}/#{@repo}.git"
+  end
+
+  def is_github?
+    return @host =~ /(^|\.)github.com$/
+  end
+
+  def get_parent_repo
+    api_url = is_github? ? "https://api.github.com/v3/repos/#{@user}/#{@repo}" : "https://#{@host}/api/v3/repos/#{@user}/#{@repo}"
+    content = `curl -sf "#{api_url}"`
+    raise Exception.new("get_parent_repo failed") unless $?.success?
+    json = JSON.parse(content)
+    parent = json['parent'] || {}
+    return GitRepo.new(parent['html_url'])
+  end
+end
+
+#
+# Parse Arguments
+#
+fork = upstream = nil
+if ARGV.length == 1
+  fork = GitRepo.new(ARGV[0])
+  upstream = fork.get_parent_repo
+elsif ARGV.length == 2
+  fork = GitRepo.new(ARGV[0])
+  upstream = GitRepo.new(ARGV[1])
+else
+  $stderr.puts "Usage: git-clone-fork <your-fork> <upstream?>"
+  exit 1
+end
+
+if Dir.exists?(fork.repo)
+  $stderr.puts "Dir #{fork.repo} already exists"
+  exit 2
+end
+
+# Clone
+system('git', 'clone', fork.ssh_url) || abort('Clone failed.')
+Dir.chdir(fork.repo)
+
+# Add and fetch upstream
+system('git', 'remote', 'add', 'upstream', upstream.ssh_url) || abort('Failed to add upstream.')
+system('git', 'fetch', 'upstream') || abort('Failed to fetch upstream.')
+
+# Configure upstream as default master
+# Also, prevent direct push to upstream
+system('git', 'config', 'branch.master.remote', 'upstream') || abort('Failed to set config.')
+system('git', 'remote', 'set-url', '--push', 'upstream', 'no_push')
+
+# Pull
+system('git', 'pull') || abort('Failed to pull.')
