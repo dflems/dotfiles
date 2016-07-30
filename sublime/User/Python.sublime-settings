@@ -4,7 +4,10 @@
 		"BUCK",
 		"BUILD",
 		"bzl",
-		"BUCKDEFS"
+		"BUCKDEFS",
+		"WORKSPACE",
+		"*.BUILD",
+		"pyc_dis"
 	],
 	"tab_size": 4,
 	"translate_tabs_to_spaces": true
