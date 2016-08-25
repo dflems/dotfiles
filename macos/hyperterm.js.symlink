@@ -45,7 +45,7 @@ module.exports = {
       primaryDisplay: false,
       startup: false,
       size: 0.45,
-      tray: false,
+      tray: true,
       unique: false
     } 
   },
