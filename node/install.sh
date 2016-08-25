@@ -7,6 +7,8 @@ if [ ! -d "$HOME/.nvm" ]; then
 else
   echo "updating nvm..."
 fi
+
 cd "$HOME/.nvm"
-git fetch
-git checkout `git describe --abbrev=0 --tags`
+git fetch --tags
+LATEST=$(git describe --tags `git rev-list --tags --max-count=1`)
+git checkout "$LATEST"
