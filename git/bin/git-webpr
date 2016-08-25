@@ -1,6 +1,8 @@
 #!/usr/bin/env ruby
 # Open a web pull request from the current branch
 
+BRANCH = ARGV.first || 'master'
+
 def make_hash(host, path)
   parts = path.split('/')
   return nil unless parts.count == 2
@@ -31,6 +33,6 @@ upstream = parse_url(remote_endpoints["upstream"]) || parse_url(remote_endpoints
 # both origins need to be on same host to create a PR
 abort "Remotes must be on same host" unless remote[:host] == upstream[:host] 
 
-# construct url (assuming we're merging to remote master)
-url = "https://#{upstream[:host]}/#{upstream[:path]}/compare/#{upstream[:user]}:master...#{remote[:user]}:#{branch_name}?expand=1"
+# construct url
+url = "https://#{upstream[:host]}/#{upstream[:path]}/compare/#{upstream[:user]}:#{BRANCH}...#{remote[:user]}:#{branch_name}?expand=1"
 system('open', url)
