@@ -2,6 +2,7 @@
 	"extensions":
 	[
 		"jcdb",
-		".mention-bot"
+		".mention-bot",
+		"vulcan"
 	]
 }

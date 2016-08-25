@@ -5,7 +5,8 @@
 		"podspec",
 		"ru",
 		"Guardfile",
-		"rabl"
+		"rabl",
+		"Fastfile"
 	],
 	"tab_size": 2,
 	"translate_tabs_to_spaces": true

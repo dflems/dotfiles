@@ -10,7 +10,9 @@
 		"tmp/cache",
 		"public/__assets",
 		"node_modules",
-		"buck-out"
+		"buck-out",
+		"bazel-*",
+		"build/DerivedData"
 	],
 	"follow_symlinks": true,
 	"font_face": "FiraCode-Regular",
