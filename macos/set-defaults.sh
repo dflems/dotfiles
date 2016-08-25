@@ -1,5 +1,4 @@
-# osx defaults
-# ~/.osx — https://mths.be/osx
+# ~/.macos — https://mths.be/macos
 
 # Ask for the administrator password upfront and keep alive
 sudo -v

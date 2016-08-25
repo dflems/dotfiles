@@ -23,7 +23,7 @@ brew upgrade --all
 # install wget with IRI support
 brew install wget --enable-iri
 
-# install more recent versions of some OS X tools
+# install more recent versions of some macOS tools
 brew install vim --override-system-vi
 
 # ruby environment
