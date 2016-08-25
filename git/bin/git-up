@@ -1,0 +1,40 @@
+#!/bin/sh
+set -o pipefail
+
+EXEC_NAME=`basename "$0"`
+if [ "$EXEC_NAME" == "git-reup" ]; then
+  VERB="Rebasing"
+  ACTION="rebase"
+elif [ "$EXEC_NAME" == "git-up" ]; then
+  VERB="Merging"
+  ACTION="merge"
+else
+  echo "wat."
+  exit 1
+fi
+
+if ! git diff-files --quiet; then
+  echo "Current branch is dirty. Please stash or commit changes."
+  exit 1
+fi
+
+BRANCH="$1"
+if [ -z "$BRANCH" ]; then
+  BRANCH="master"
+fi
+
+REMOTE="origin"
+if git remote -v | grep -q upstream; then
+  REMOTE="upstream"
+fi
+
+yellow() { echo "\033[33m$@\033[0m"; }
+indent() { sed 's/^/    /'; }
+fail() { RET=$?; echo "Failed!"; exit $RET; }
+
+yellow "Fetching $REMOTE/$BRANCH"
+git fetch "$REMOTE" "$BRANCH" 2>&1 | indent || fail
+
+echo
+yellow "$VERB $REMOTE/$BRANCH"
+git "$ACTION" "$REMOTE/$BRANCH" 2>&1 | indent || fail
