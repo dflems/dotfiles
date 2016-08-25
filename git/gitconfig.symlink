@@ -1,10 +1,7 @@
+[include]
+    path = ~/.gitconfig.local
 [hub]
     protocol = https
-[user]
-    name = AUTHORNAME
-    email = AUTHOREMAIL
-[credential]
-    helper = GIT_CREDENTIAL_HELPER
 [alias]
     # shorthand
     st = status -sb
@@ -28,20 +25,15 @@
     amend = commit --amend -C HEAD
     dlm = !git-delete-local-merged
     cbn = !git-copy-branch-name
-    rc = !git-rank-contributors
     undo = "!git reset --soft HEAD^"
     scalpel = reset --hard
     fuckit = "!git reset --hard origin/master"
-    irup = "!git fetch upstream master && git rebase -i upstream/master"
-    rup = "!git fetch upstream master && git rebase upstream/master"
-    mup = "!git fetch upstream master && git merge upstream/master"
-    cf = clone-fork
+    count = !git shortlog -sn
 
     # logging
     ls = log --pretty=format:'%C(yellow)%h %C(blue)%ad%C(red)%d %C(reset)%s%C(green) [%an]' --decorate --date=short
     lss = !git --no-pager ls -n 25
     lsv = !git ls --numstat
-    lst = !git ls --since '1 day ago' --author AUTHOREMAIL
 [color]
     diff = auto
     status = auto
