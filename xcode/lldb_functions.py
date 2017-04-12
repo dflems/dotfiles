@@ -11,6 +11,13 @@ def pjson(debugger, command, result, internal_dict):
     debugger.HandleCommand("po [[NSString alloc] initWithData:(id)[NSJSONSerialization dataWithJSONObject:({}) options:0 error:nil] encoding:4]".format(command))
 
 ###############################################################################
+# Reveal 2
+
+def reveal(debugger, command, result, internal_dict):
+    '''Print the string represented by the given NSData object.'''
+    debugger.HandleCommand('expr (Class)NSClassFromString(@"IBARevealLoader") == nil ? (void *)dlopen("/Applications/Reveal.app/Contents/SharedSupport/iOS-Libraries/RevealServer.framework/RevealServer", 0x2) : ((void*)0)')
+
+###############################################################################
 # NSData-to-NSString
 
 def stringdata(debugger, command, result, internal_dict):
@@ -42,6 +49,7 @@ def _register(debugger, name):
 
 def __lldb_init_module(debugger, internal_dict):
     _register(debugger, 'pjson')
+    _register(debugger, 'reveal')
     _register(debugger, 'stringdata')
     _register(debugger, 'ivars')
     _register(debugger, 'methods')
