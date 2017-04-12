@@ -33,9 +33,11 @@ git_prompt_info() {
     branch="@$shortcode"
   fi
 
-  # dirty check + associated color
-  command test -n "$(git status --porcelain 2>/dev/null | tail -n 1)" &>/dev/null
-  (($? == 0)) && git_color=red || git_color=green
+  # TODO: slowwwwwwwwww
+  # # dirty check + associated color
+  # command test -n "$(git status --porcelain 2>/dev/null | tail -n 1)" &>/dev/null
+  # (($? == 0)) && git_color=red || git_color=green
+  git_color="magenta"
 
   # output git info
   echo " %F{$git_color}${branch}%f%F{magenta}${arrows}%f"
