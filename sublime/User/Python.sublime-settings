@@ -4,6 +4,7 @@
 		"BUCK",
 		"BUILD",
 		"bzl",
+		"bazel",
 		"BUCKDEFS",
 		"WORKSPACE",
 		"*.BUILD",
