@@ -2,8 +2,7 @@
 
 if [ -z "$1" ]; then
   git-collect-submodules | xargs -L1 git-subclean
-else
-  cd "$1"
+elif cd "$1"; then
   git reset -q --hard HEAD
   git clean -dffx
   echo -e "\033[0;34m$1\033[0m \n  $(git log --color --oneline -n 1)"

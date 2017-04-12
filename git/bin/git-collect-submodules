@@ -1,3 +1,11 @@
 #!/usr/bin/env ruby
 
-puts Dir['*/**/.git'].map{|x| File.dirname(x)}.select{|x| File.directory?(x)}.join("\n")
+arr = []
+for gm in Dir['**/.gitmodules']
+  base = File.dirname(gm)
+  for path in `cat "#{gm}" | grep "path =" | awk '{print $3}'`.split("\n")
+    arr << File.join(base, path).gsub(/^\.\//, '')
+  end
+end
+
+puts arr

@@ -13,7 +13,8 @@ else
   exit 1
 fi
 
-if ! git diff-files --quiet; then
+git diff-files | grep -v :160000 | read DIFF
+if [ ! -z "$DIFF" ]; then
   echo "Current branch is dirty. Please stash or commit changes."
   exit 1
 fi

@@ -10,6 +10,7 @@
     ci = commit
     co = checkout
     br = branch
+    bl = branch --list
     diff = diff --word-diff
     dc = diff --cached
     ds = diff --staged
