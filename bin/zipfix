@@ -1,0 +1,4 @@
+#!/bin/sh
+
+zip -d "$1" "*/.DS_Store"
+zip -d "$1" "__MACOSX*"
