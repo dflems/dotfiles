@@ -46,22 +46,41 @@ else
   end
 end
 
+# failure
+def fail!(msg, code=1)
+  puts "Error: #{msg}"
+  exit code
+end
+
 # capture stdout, exiting if nonzero
 def cmd(*args)
   command = Shellwords.join(args)
   out = `#{command}`.strip
-  unless $?.success?
-    puts "Error: command failed: #{command}"
-    exit $?.exitstatus
-  end
+  fail!(puts "command failed: #{command}", $?.exitstatus) unless $?.success?
   out
+end
+
+# get the architectures in a fat binary
+def get_archs(lib_path)
+  cmd('lipo', '-info', lib_path).split(':').last.strip.split(/\s/)
 end
 
 # output thin library
 def make_thin(dir, lib_path, arch)
   dir = File.join(dir, arch)
   FileUtils.mkdir_p(dir)
-  cmd('lipo', '-extract', arch, lib_path, '-o', File.join(dir, File.basename(lib_path)))
+  output = File.join(dir, File.basename(lib_path))
+
+  archs = get_archs(lib_path)
+  if archs.length == 1
+    if archs.first == arch
+      cmd('cp', lib_path, output)
+    else
+      fail!("invalid arch: #{arch}")
+    end
+  else
+    cmd('lipo', '-extract', arch, lib_path, '-o', output)
+  end
 end
 
 # human filesize
@@ -84,7 +103,7 @@ end
 puts '...'
 Dir.mktmpdir do |tmpdir|
   for lib_path in lib_paths
-    lib_archs = cmd('lipo', '-info', lib_path).split(':').last.strip.split(/\s/)
+    lib_archs = get_archs(lib_path)
     for arch in (wholesale ? lib_archs : archs)
       make_thin(tmpdir, lib_path, arch)
     end
