@@ -1,0 +1,10 @@
+#!/bin/sh
+
+GITX_APP="/Applications/GitX.app"
+
+if [[ ! -d "$GITX_APP" ]]; then
+  echo "GitX is not installed!"
+  exit 1
+fi
+
+open -a "$GITX_APP" "$1"

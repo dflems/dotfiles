@@ -1,0 +1,8 @@
+#!/bin/sh
+
+pip_install_reqs() {
+  [[ -f "$1" ]] && pip install -r "$1"
+}
+
+pip_install_reqs "requirements.txt"
+pip_install_reqs "dev-requirements.txt"

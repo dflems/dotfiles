@@ -1,0 +1,21 @@
+#!/bin/sh
+
+function kill_app() {
+  killall -9 "$1" 2>/dev/null && echo "Killed $1.app"
+}
+
+function kill_launchd_services() {
+  while launchctl list | grep -q "$1"; do
+    for name in `launchctl list | grep "$1" | awk '{print $3}'`; do
+      echo "Killing $name"
+      launchctl remove "$name"
+      launchctl stop "$name"
+    done
+    sleep 1
+  done
+}
+
+kill_app Xcode
+kill_app Simulator
+kill_launchd_services launchd_sim
+kill_launchd_services CoreSimulatorService

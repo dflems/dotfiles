@@ -11,10 +11,7 @@ fi
 
 # Check for install
 PACKAGE_DIR=~/Library/Application\ Support/Sublime\ Text\ 3/Packages
-if [ ! -d "$PACKAGE_DIR" ]; then
-  echo "! Sublime Text 3 is not installed."
-  exit 2
-fi
+mkdir -p "$PACKAGE_DIR"
 
 # Symlink Executable
 SUBL_EXEC="/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl"

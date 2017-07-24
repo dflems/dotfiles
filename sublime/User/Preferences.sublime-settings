@@ -12,6 +12,7 @@
 		"node_modules",
 		"buck-out",
 		"bazel-*",
+		"tulsigen-*",
 		"build/DerivedData"
 	],
 	"follow_symlinks": true,

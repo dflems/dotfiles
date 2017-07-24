@@ -19,3 +19,4 @@ function e() {
 
 # Shortcut to edit dotfiles
 alias edot="e \"$ZSH\""
+alias cdot="cd \"$ZSH\""
