@@ -14,6 +14,7 @@ fi
 
 # Python w/ virtualenv wrapper
 export VIRTUALENVWRAPPER_PYTHON=$(brew --prefix)/bin/python
+export VIRTUAL_ENV_DISABLE_PROMPT=1
 if [ -f $(brew --prefix)/bin/virtualenvwrapper_lazy.sh ]; then
   export WORKON_HOME=$HOME/.virtualenvs
   . $(brew --prefix)/bin/virtualenvwrapper_lazy.sh

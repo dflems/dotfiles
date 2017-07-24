@@ -43,9 +43,19 @@ git_prompt_info() {
   echo " %F{$git_color}${branch}%f%F{magenta}${arrows}%f"
 }
 
+virtualenv_info() {
+  [[ -z "$VIRTUAL_ENV" ]] && return
+  VENV="$VIRTUAL_ENV"
+  if [[ -n "$WORKON_HOME" ]]; then
+    VENV="${VENV/$WORKON_HOME\//env:}"
+  fi
+  VENV="${VENV/$HOME\//~/}"
+  echo " %F{yellow}($VENV)%f"
+}
+
 precmd() {
   set_title "zsh" "$USER@%m" "%55<...<%~"
 }
 
 # path + git info + cursor (red if last command failed, otherwise yellow)
-export PROMPT=$'\n%F{blue}%~%f$(git_prompt_info)\n%(?.%F{yellow}.%F{red})❯%f '
+export PROMPT=$'\n%F{blue}%~%f$(virtualenv_info)$(git_prompt_info)\n%(?.%F{yellow}.%F{red})❯%f '
