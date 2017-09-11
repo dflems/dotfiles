@@ -23,3 +23,4 @@ end
 # install snippets and themes
 replace_and_link_dir('CodeSnippets', 'snippets')
 replace_and_link_dir('FontAndColorThemes', 'themes')
+replace_and_link_dir('xcdebugger', 'xcdebugger')
