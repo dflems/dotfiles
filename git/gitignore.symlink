@@ -15,5 +15,6 @@ xcuserdata
 zeus.json
 *.gcda
 *.gcno
+*.pyc
 .LSOverride
 dflems.rake

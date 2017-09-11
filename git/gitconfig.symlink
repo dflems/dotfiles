@@ -16,6 +16,7 @@
     ds = diff --staged
     po = push origin
     aa = add --all
+    tb = topic-branch
 
     # stash
     sl = stash list
@@ -55,3 +56,8 @@
     default = simple
 [url "git@github.com:"]
     insteadOf = gh:
+[filter "lfs"]
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f

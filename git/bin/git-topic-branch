@@ -1,0 +1,9 @@
+#!/bin/sh
+
+if [ -z "$1" ]; then
+  echo "Please provide topic branch name"
+  exit 1
+fi
+
+DATE=`date +"%Y-%m-%d"`
+git checkout -b "$USER/$1-$DATE"

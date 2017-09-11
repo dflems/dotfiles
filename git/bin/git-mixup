@@ -1,0 +1,63 @@
+#!/bin/sh -u
+#
+# Copyright 2017 Spotify AB
+# 
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+# 
+#     http://www.apache.org/licenses/LICENSE-2.0
+# 
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+#
+# Mixes the HEAD commit into the previous commits where each modified file was modified last.
+#
+# Script version 0.5.0
+#
+
+git symbolic-ref --short HEAD > /dev/null 2>&1
+[ 0 -ne "$?" ] && echo "Error: no branch is checked out, cowardly refusing to continue" && exit 1
+
+! git diff-index --quiet HEAD -- && echo "Error: There are local changes, cowardly refusing to continue" && exit 1
+
+UPSTREAM=$(git rev-parse --abbrev-ref --symbolic-full-name "@{u}" 2> /dev/null)
+[ -z "$UPSTREAM" ] && echo "Error: No upstream branch set, cowardly refusing to continue" && exit 1
+
+BASE=$(git merge-base "$UPSTREAM" HEAD)
+
+MERGES=$(git log --merges "$BASE"..HEAD)
+[ -n "$MERGES" ] && echo "Error: Found merges in the commit log, cowardly refusing to continue" && exit 1
+
+FIXUP=$(git rev-parse --short HEAD)
+PREV=$(git rev-parse --short HEAD^)
+
+git diff --name-only "$PREV" | while read -r FILE
+do
+    COMMIT=$(git log -1 --pretty=format:%H "$BASE..$PREV" "$FILE")
+    if [ -n "$COMMIT" ]
+    then
+        echo "Mixing changes in file \"$FILE\" into commit \"$(git show -s --pretty=format:%s "$COMMIT")\""
+
+        git reset -q "$PREV"
+        git add "$FILE"
+        git commit -q --fixup "$COMMIT"
+
+        git add .
+        git commit -q -C "$FIXUP" --no-edit --allow-empty
+
+        PREV=$(git rev-parse HEAD^)
+    fi
+done
+
+git diff HEAD^ --quiet || echo "Note: The fixup commit is not pure. Residue is left in HEAD."
+
+# By setting the EDITOR variable, the git rebase file will be accepted immediately.
+EDITOR=true git rebase -q --interactive --autosquash "$BASE" > /dev/null 2>&1
+
+echo "Finished mixing the fixup commit into the branch."
+echo "If anything went wrong, run: git reset --hard $FIXUP"
