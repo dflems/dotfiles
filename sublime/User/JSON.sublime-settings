@@ -3,6 +3,8 @@
 	[
 		"jcdb",
 		".mention-bot",
-		"vulcan"
+		"vulcan",
+		"cassette",
+		"har"
 	]
 }

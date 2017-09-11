@@ -1,0 +1,47 @@
+#!/usr/bin/env ruby
+require 'json'
+require 'shellwords'
+
+def kill_app!(name)
+  system "killall -9 \"#{name}\" 2>/dev/null && echo \"Killed #{name}.app\""
+end
+
+def kill_launchd_services!(name)
+  10.times do
+    services = `launchctl list | grep "#{name}" | awk '{print $3}'`.strip.split("\n")
+    break if services.empty?
+    for service in services
+      puts "Killing #{service}"
+      system('launchctl', 'remove', service)  
+      system('launchctl', 'stop', service)
+    end
+    sleep 1
+  end
+end
+
+kill_app!('Xcode')
+kill_app!('Simulator')
+kill_launchd_services!('launchd_sim')
+kill_launchd_services!('CoreSimulatorService')
+
+device_types = JSON.parse(`xcrun simctl list -j devicetypes`)['devicetypes']
+runtimes = JSON.parse(`xcrun simctl list -j runtimes`)['runtimes']
+devices = JSON.parse(`xcrun simctl list -j devices`)['devices']
+
+devices.each do |runtime, runtime_devices|
+  runtime_devices.each do |device|
+    puts "Removing device #{device['name']} (#{device['udid']})"
+    system('xcrun', 'simctl', 'delete', device['udid'])
+  end
+end
+
+device_types.each do |device_type|
+  runtimes.select{|runtime| runtime['availability'] == '(available)'}.each do |runtime|
+    cmd = Shellwords.shelljoin(['xcrun', 'simctl', 'create', device_type['name'], device_type['identifier'], runtime['identifier']])
+    udid = `#{cmd} 2>/dev/null`.strip
+    unless udid.empty?
+      puts "Created #{device_type['name']} with #{runtime['name']} (#{udid})"
+    end
+    sleep 0.5
+  end
+end
