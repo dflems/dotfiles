@@ -1,5 +1,5 @@
 {
-	"color_scheme": "Packages/Theme - Spacegray/base16-ocean.dark.tmTheme",
+	"color_scheme": "Packages/Theme - Glacier/glacier.tmTheme",
 	"ensure_newline_at_eof_on_save": true,
 	"folder_exclude_patterns":
 	[
@@ -16,8 +16,8 @@
 		"build/DerivedData"
 	],
 	"follow_symlinks": true,
-	"font_face": "FiraCode-Regular",
-	"font_size": 17.0,
+	"font_face": "Hack-Regular",
+	"font_size": 15.0,
 	"hot_exit": false,
 	"ignored_packages":
 	[
@@ -25,5 +25,5 @@
 	],
 	"remember_open_files": false,
 	"save_on_focus_list": true,
-	"theme": "Spacegray.sublime-theme"
+	"theme": "Glacier.sublime-theme"
 }

@@ -6,6 +6,8 @@
 *.rbc
 *.sw[nop]
 *~
+._*
+Thumbs.db
 db/*.sqlite3
 log/*.log
 rerun.txt
@@ -17,4 +19,6 @@ zeus.json
 *.gcno
 *.pyc
 .LSOverride
-dflems.rake
+.Spotlight-V100
+.Trashes
+.idea

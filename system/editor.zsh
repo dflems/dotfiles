@@ -10,11 +10,7 @@ fi
 
 # Editor function
 function e() {
-  if [ "$1" = "" ] ; then
-    $EDITOR .
-  else
-    $EDITOR "$1"
-  fi
+  "$EDITOR" "${1:-.}"
 }
 
 # Shortcut to edit dotfiles
