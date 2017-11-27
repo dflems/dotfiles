@@ -18,10 +18,10 @@ SUBL_EXEC="/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl"
 if [ -f "$SUBL_EXEC" ]; then
   echo "* Symlinking to /usr/local/bin/subl"
   rm -rf "/usr/local/bin/subl"
-  ln -s "$SUBL_EXEC" /usr/local/bin/subl
+  ln -sf "$SUBL_EXEC" /usr/local/bin/subl
   echo "* Symlinking to /usr/local/bin/sublime"
   rm -rf "/usr/local/bin/sublime"
-  ln -s "$SUBL_EXEC" /usr/local/bin/sublime
+  ln -sf "$SUBL_EXEC" /usr/local/bin/sublime
 else
   echo "! \"subl\" executable not found at \"$SUBL_EXEC\""
 fi
@@ -38,7 +38,15 @@ rm -rf "$PACKAGE_DIR/User"
 ln -s "$ZSH/sublime/User" "$PACKAGE_DIR"
 cd "$PACKAGE_DIR"
 
-# Install Spacegray
-echo "* Installing Spacegray"
-rm -rf "Theme - Spacegray"
-git clone --quiet https://github.com/kkga/spacegray "Theme - Spacegray"
+# Install themes
+function install_theme() {
+  DIRNAME="$1"
+  GIT_URL="$2"
+
+  echo "* Installing \"$DIRNAME\""
+  [[ -d "$DIRNAME" ]] && rm -rf "$DIRNAME"
+  git clone --quiet --depth=1 "$GIT_URL" "$DIRNAME"
+}
+
+install_theme "Theme - Spacegray" "https://github.com/kkga/spacegray"
+install_theme "Theme - Glacier" "https://github.com/shovelandsandbox/glacier-theme"
