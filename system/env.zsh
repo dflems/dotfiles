@@ -11,3 +11,6 @@ fi
 if [ -f /usr/libexec/java_home ]; then
   export JAVA_HOME=$(/usr/libexec/java_home)
 fi
+
+# OPAM for that FB ocaml stuff
+. $HOME/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
