@@ -1,0 +1,43 @@
+#!/usr/bin/env ruby
+require 'set'
+
+BREW_INSTALLED = []
+
+def brew(item, *args)
+  BREW_INSTALLED << item
+end
+
+dotfiles_dir = ENV['DOTFILES'] || '~/.dotfiles'
+
+if dotfiles_dir
+  dotfiles = File.expand_path(File.join(dotfiles_dir, 'Brewfile'))
+  if File.exists?(dotfiles)
+    load dotfiles 
+  end
+end
+
+visited = Set.new(['brew-cask'] + BREW_INSTALLED)
+list = `brew list`.split("\n")
+
+while !list.empty?
+  while !list.empty?
+    formula = list.shift
+    next if visited.include?(formula)
+    visited << formula
+    dependees = `brew uses --installed #{formula}`.strip
+    next unless dependees.empty?
+
+    print "#{formula} is not depended on. Remove? [y/n] "
+    if gets.strip.downcase == 'y'
+      system('brew', 'remove', formula)
+      deps = `brew deps --1 --installed #{formula}`.split("\n")
+      for dep in deps
+        list << dep unless visited.include?(dep)
+      end
+    end
+  end
+
+  for item in `brew list`.split("\n")
+    list << item unless visited.include?(item)
+  end
+end
