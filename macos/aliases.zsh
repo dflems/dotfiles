@@ -6,6 +6,10 @@ alias ll="ls -l"
 alias l.='ls -d .[^.]*'
 alias lsd='ls -ld *(-/DN)'
 
+# Shortcuts
+alias dl="cd $HOME/Downloads"
+alias dt="cd $HOME/Desktop"
+
 # Other
 alias md='mkdir -p'
 alias rd='rmdir'
@@ -54,8 +58,10 @@ alias plistbuddy="/usr/libexec/PlistBuddy"
 alias flushdns="dscacheutil -flushcache && killall -HUP mDNSResponder 2>/dev/null"
 
 # IP addresses
-alias extip="dig +short myip.opendns.com @resolver1.opendns.com"
-alias addr="ifconfig -a | grep 'inet ' | grep -v '127.0.0.1' | awk '{ print \$2 }'"
+alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
+alias localip="ifactive | head -n1 | cut -d':' -f1 | xargs ipconfig getifaddr"
+alias ips="ifconfig -a | grep -o 'inet6\? \(addr:\)\?\s\?\(\(\([0-9]\+\.\)\{3\}[0-9]\+\)\|[a-fA-F0-9:]\+\)' | awk '{ sub(/inet6? (addr:)? ?/, \"\"); print }'"
+alias ifactive="ifconfig | pcregrep -M -o '^[^\t:]+:([^\n]|\n\t)*status: active'"
 
 # http://xkcd.com/530
 alias stfu="osascript -e 'set volume output muted true'"
