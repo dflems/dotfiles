@@ -1,0 +1,95 @@
+#!/usr/bin/env ruby
+
+def origin_url
+  url = `git remote get-url origin 2>/dev/null`
+  abort('not a git repo') unless $?.success?
+  url.strip
+end
+
+def dashes_dir
+  dir = File.expand_path('~/.dashes')
+  system('mkdir', '-p', dir)
+  dir
+end
+
+def dash_save(name, staged=false)
+  contents = `git diff #{staged ? '--staged' : ''} 2>/dev/null`.strip
+  abort('nothing to diff') if contents.empty?
+
+  file = File.join(dashes_dir, "#{(Time.now.to_f * 1000).to_i}")
+  name = name || 'WIP'
+  url = origin_url
+
+  File.open(file, 'w') do |fd|
+    fd.puts(contents)
+  end
+  system('xattr', '-w', 'dash_git_url', url, file)
+  system('xattr', '-w', 'dash_name', name, file)
+end
+
+def dash_files
+  Dir["#{dashes_dir}/*"].sort
+end
+
+def get_dash(idx)
+  dash_files[idx] || abort('no such dash')
+end
+
+def dash_list
+  dash_files.each_with_index do |file, idx|
+    url = `xattr -p dash_git_url #{file}`.strip
+    name = `xattr -p dash_name #{file}`.strip
+    puts "dash@{#{idx}}: #{name} :: #{url}"
+  end
+end
+
+def dash_pop(idx)
+  dash_apply(idx) && dash_drop(idx)
+end
+
+def dash_peek(idx)
+  system('cat', get_dash(idx))
+end
+
+def dash_apply(idx)
+  system('git', 'apply', get_dash(idx)) || abort("could not apply #{idx}")
+end
+
+def dash_drop(idx)
+  file = get_dash(idx)
+  system('rm', get_dash(idx)) || abort("could not drop #{idx}")
+end
+
+def dash_clear
+  system('rm', '-rf', dashes_dir)
+end
+
+cmd = ARGV.shift
+arg = ARGV.shift
+
+if cmd == 'save'
+  dash_save(arg, false)
+elsif cmd == 'stagesave'
+  dash_save(arg, true)
+elsif cmd == 'pop'
+  idx = arg.to_i
+  dash_pop(idx)
+elsif cmd == 'list'
+  dash_list
+elsif cmd == 'peek'
+  idx = arg.to_i
+  dash_peek(idx)
+elsif cmd == 'apply'
+  idx = arg.to_i
+  dash_apply(idx)
+elsif cmd == 'drop'
+  idx = arg.to_i
+  dash_drop(idx)
+elsif cmd == 'clear'
+  dash_clear
+else
+  $stderr.puts <<-EOS
+Usage: #{File.basename($0)} [save,stagesave,pop,list,peek,apply,drop,clear]
+EOS
+  exit 1
+end

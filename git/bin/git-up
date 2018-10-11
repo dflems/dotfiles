@@ -2,9 +2,13 @@
 set -o pipefail
 
 EXEC_NAME=`basename "$0"`
+INTERACTIVE_REBASE="0"
 if [ "$EXEC_NAME" == "git-reup" ]; then
   VERB="Rebasing"
   ACTION="rebase"
+elif [ "$EXEC_NAME" == "git-irb" ]; then
+  VERB="Interactively Rebasing"
+  INTERACTIVE_REBASE="1"
 elif [ "$EXEC_NAME" == "git-up" ]; then
   VERB="Merging"
   ACTION="merge"
@@ -20,6 +24,7 @@ if [ ! -z "$DIFF" ]; then
 fi
 
 BRANCH="$1"
+shift
 if [ -z "$BRANCH" ]; then
   BRANCH="master"
 fi
@@ -38,4 +43,8 @@ git fetch "$REMOTE" "$BRANCH" 2>&1 | indent || fail
 
 echo
 yellow "$VERB $REMOTE/$BRANCH"
-git "$ACTION" "$REMOTE/$BRANCH" 2>&1 | indent || fail
+if [ "$INTERACTIVE_REBASE" == "1" ]; then
+  exec git rebase -i "$REMOTE/$BRANCH"
+else
+  git "$ACTION" "$REMOTE/$BRANCH" 2>&1 | indent || fail
+fi

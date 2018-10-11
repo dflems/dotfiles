@@ -5,5 +5,5 @@ if [ -z "$1" ]; then
   exit 1
 fi
 
-DATE=`date +"%Y-%m-%d"`
-git checkout -b "$USER/$1-$DATE"
+DATE=`date +"%Y%m%d"`
+git checkout -b "$USER/$DATE-$1"
