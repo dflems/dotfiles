@@ -1,0 +1,3 @@
+#!/bin/sh
+
+sort < /dev/stdin | uniq -c | sort -nr
