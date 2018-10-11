@@ -1,9 +1,8 @@
 ## dflems' dotfiles
-Mostly based on [holman's](http://github.com/holman) topically-organized dotfiles. They're using his bootstrapping Rakefile, but I may change that out in the future for something with little or no dependencies. There's some stuff in here that's specific to my setup (my `.gitconfig` for instance), so watch out.
+Mostly based on [holman's](http://github.com/holman) topically-organized dotfiles. There's some stuff in here that's specific to my setup (my `.gitconfig` for instance), so watch out.
 
 ### prerequisites
-* [XCode](https://itunes.apple.com/us/app/xcode/id497799835?mt=12)
-* [Homebrew](http://brew.sh) package manager
+* [XCode](https://itunes.apple.com/us/app/xcode/id497799835?mt=12) or Command Line Tools
 
 ### so, how does this work?
 * Installs some Homebrew dependencies and neat extensions.
