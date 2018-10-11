@@ -12,12 +12,9 @@
 	<string>- (instancetype)initWithCoder:(NSCoder *)decoder
 {
     self = [super init];
-    if (!self) {
-        return nil;
+    if (self) {
+        &lt;# implementation #&gt;
     }
-    
-    &lt;# implementation #&gt;
-    
     return self;
 }
 

@@ -1,5 +1,8 @@
 # Facebook Chisel (brew install chisel)
 command script import /usr/local/opt/chisel/libexec/fblldb.py
 
+# Moar aliases
+command alias alt expr -l objc++ -O --[[UIWindow keyWindow] _autolayoutTrace]
+
 # My Functions
 command script import ~/.dotfiles/xcode/lldb_functions.py

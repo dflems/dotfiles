@@ -10,12 +10,9 @@
 	</array>
 	<key>IDECodeSnippetContents</key>
 	<string>self = [super init];
-if (!self) {
-    return nil;
+if (self) {
+    &lt;#initializations#&gt;
 }
-    
-&lt;#initializations#&gt;
-    
 return self;</string>
 	<key>IDECodeSnippetIdentifier</key>
 	<string>A990CAC2-D2ED-40F4-AC35-71DEF6041FEC</string>
