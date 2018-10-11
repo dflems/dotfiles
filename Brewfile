@@ -26,7 +26,8 @@ brew 'ninja'
 brew 'yarn'
 
 # a/v
-brew 'ffmpeg'
+brew 'ffmpeg', args: ['with-fdk-aac', 'with-x265']
+brew 'imagemagick', args: ['with-ghostscript']
 brew 'youtube-dl'
 
 # install other useful binaries and tools
