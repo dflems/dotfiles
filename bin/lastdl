@@ -1,0 +1,11 @@
+#!/bin/sh
+
+BASE="$HOME/Downloads"
+FILE=`ls -t "$BASE" | head -n 1`
+if [ "$1" == "-c" ]; then
+  printf "$BASE/$FILE" | pbcopy
+elif [ "$1" == "-e" ]; then
+  "$EDITOR" "$BASE/$FILE"
+else
+  printf "$BASE/$FILE"
+fi
