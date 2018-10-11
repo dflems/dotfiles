@@ -6,3 +6,4 @@ pip_install_reqs() {
 
 pip_install_reqs "requirements.txt"
 pip_install_reqs "dev-requirements.txt"
+pip_install_reqs "build-requirements.txt"
