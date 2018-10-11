@@ -13,7 +13,9 @@
 		"buck-out",
 		"bazel-*",
 		"tulsigen-*",
-		"build/DerivedData"
+		"tulsi-workspace",
+		"build/DerivedData",
+		"infer-out"
 	],
 	"follow_symlinks": true,
 	"font_face": "Hack-Regular",
