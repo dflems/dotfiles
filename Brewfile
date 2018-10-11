@@ -1,7 +1,3 @@
-# Ruby environment
-brew 'chruby'
-brew 'ruby-install'
-
 # Install more recent versions of some macOS tools.
 brew 'grep'
 brew 'python'
@@ -11,23 +7,43 @@ brew 'vim', args: ['override-system-vi']
 # git + lfs
 brew 'git'
 brew 'git-lfs'
-
-# install other useful binaries
-brew 'chisel'
-brew 'gnupg'
-brew 'go'
 brew 'hub'
+
+# language support and tools
+brew 'chruby'
+brew 'elixir'
+brew 'go'
+brew 'node'
+brew 'python@2'
+brew 'ruby-install'
+
+# build tools
+brew 'automake'
+brew 'chisel'
+brew 'cmake'
+brew 'libtool' # glibtool
+brew 'ninja'
+brew 'yarn'
+
+# a/v
+brew 'ffmpeg'
+brew 'youtube-dl'
+
+# install other useful binaries and tools
+brew 'dark-mode'
+brew 'gnupg'
+brew 'grc'
 brew 'jq'
+brew 'man2html'
 brew 'moreutils'
 brew 'ngrep'
 brew 'nmap'
-brew 'node'
 brew 'rename'
 brew 'ripgrep'
 brew 'the_silver_searcher'
 brew 'trash'
 brew 'tree'
 brew 'vbindiff'
+brew 'watch'
 brew 'wget', args: ['enable-iri']
-brew 'youtube-dl'
 brew 'zopfli'
