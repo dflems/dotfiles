@@ -19,6 +19,8 @@ brew 'ruby-install'
 
 # build tools
 brew 'automake'
+brew 'bazel'
+brew 'buck'
 brew 'chisel'
 brew 'cmake'
 brew 'libtool' # glibtool
