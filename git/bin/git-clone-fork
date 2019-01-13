@@ -28,9 +28,9 @@ class GitRepo
   end
 
   def get_parent_repo
-    api_url = is_github? ? "https://api.github.com/v3/repos/#{@user}/#{@repo}" : "https://#{@host}/api/v3/repos/#{@user}/#{@repo}"
+    api_url = is_github? ? "https://api.github.com/repos/#{@user}/#{@repo}" : "https://#{@host}/api/repos/#{@user}/#{@repo}"
     content = `curl -sf "#{api_url}"`
-    raise Exception.new("get_parent_repo failed") unless $?.success?
+    raise Exception.new("get_parent_repo failed (#{$?.exitstatus})") unless $?.success?
     json = JSON.parse(content)
     parent = json['parent'] || {}
     return GitRepo.new(parent['html_url'])
