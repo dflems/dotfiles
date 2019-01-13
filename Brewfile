@@ -29,6 +29,7 @@ brew 'yarn'
 
 # general dev tools
 brew 'pow' # pow.cx
+brew 'jenv'
 
 # https://github.com/jgavris/rs-git-fsmonitor
 # https://blog.github.com/2018-04-05-git-217-released/#speeding-up-status-with-watchman

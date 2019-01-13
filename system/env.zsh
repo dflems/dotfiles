@@ -1,6 +1,6 @@
 if [[ "$EDITOR" == "" ]] ; then
   # Use `subl` as the editor if it's on the path
- if type subl >/dev/null 2>&1; then
+  if type subl >/dev/null 2>&1; then
     export EDITOR='subl'
   else
     export EDITOR='vi'
@@ -8,7 +8,11 @@ if [[ "$EDITOR" == "" ]] ; then
 fi
 
 # Java Home
-if [ -f /usr/libexec/java_home ]; then
+JENV="$HOME/.jenv"
+if [ -d "$JENV" ]; then
+  export PATH="$JENV/bin:$PATH"
+  eval "$(jenv init -)"
+elif [ -f /usr/libexec/java_home ]; then
   export JAVA_HOME=$(/usr/libexec/java_home)
 fi
 
