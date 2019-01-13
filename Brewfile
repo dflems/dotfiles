@@ -27,12 +27,21 @@ brew 'libtool' # glibtool
 brew 'ninja'
 brew 'yarn'
 
+# general dev tools
+brew 'pow' # pow.cx
+
+# https://github.com/jgavris/rs-git-fsmonitor
+# https://blog.github.com/2018-04-05-git-217-released/#speeding-up-status-with-watchman
+tap 'jgavris/rs-git-fsmonitor', 'https://github.com/jgavris/rs-git-fsmonitor.git'
+brew 'rs-git-fsmonitor'
+
 # a/v
 brew 'ffmpeg', args: ['with-fdk-aac', 'with-x265']
 brew 'imagemagick', args: ['with-ghostscript']
 brew 'youtube-dl'
 
 # install other useful binaries and tools
+brew 'colordiff'
 brew 'dark-mode'
 brew 'gnupg'
 brew 'grc'
