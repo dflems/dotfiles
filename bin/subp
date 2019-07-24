@@ -1,0 +1,13 @@
+#!/bin/sh
+
+ARG="${1:-.}"
+
+if [ -d "$ARG" ]; then
+	PROJ=`find "$ARG" -maxdepth 1 -name "*.sublime-project" -type f | head -n 1`
+	if [ -n "$PROJ" ]; then
+		>&2 echo "Opening $PROJ"
+		ARG="$PROJ"
+	fi
+fi
+
+exec subl "$ARG"
