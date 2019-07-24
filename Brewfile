@@ -60,3 +60,13 @@ brew 'vbindiff'
 brew 'watch'
 brew 'wget', args: ['enable-iri']
 brew 'zopfli'
+
+# casks for quicklook plugins
+# https://github.com/sindresorhus/quick-look-plugins
+cask 'provisionql'
+cask 'qlcolorcode'
+cask 'qlmarkdown'
+cask 'qlstephen'
+cask 'quicklook-json'
+cask 'quicklookapk'
+cask 'suspicious-package'
