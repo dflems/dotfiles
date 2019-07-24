@@ -7,7 +7,8 @@
 		"Guardfile",
 		"rabl",
 		"Fastfile",
-		"Specfile"
+		"Specfile",
+		"XCGenFile"
 	],
 	"tab_size": 2,
 	"translate_tabs_to_spaces": true
