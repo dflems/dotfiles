@@ -1,0 +1,12 @@
+#!/bin/sh
+set -e
+
+if [ -z "$1" ]; then
+  >&2 echo "usage: $(basename $0) <path>"
+  exit 1
+fi
+
+touch "$1"
+chmod +x "$1"
+
+[[ -n "$EDITOR" ]] && "$EDITOR" "$1"
