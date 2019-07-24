@@ -1,0 +1,12 @@
+#!/bin/sh
+
+COMMITTED="/tmp/defaults-commit.txt"
+CURRENT="/tmp/defaults-current.txt"
+
+if [[ "$1" == "commit" || ! -f "$COMMITTED" ]]; then
+  defaults read > "$COMMITTED"
+  exit 0
+fi
+
+defaults read > "$CURRENT"
+exec colordiff -C 3 "$COMMITTED" "$CURRENT"
