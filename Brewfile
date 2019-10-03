@@ -19,6 +19,7 @@ brew 'ruby-install'
 
 # build tools
 brew 'automake'
+brew 'bat'
 brew 'bazel'
 brew 'buck'
 brew 'chisel'
@@ -43,9 +44,14 @@ brew 'youtube-dl'
 
 # install other useful binaries and tools
 brew 'colordiff'
+brew 'cowsay'
 brew 'dark-mode'
+brew 'diskus'
+brew 'fd'
 brew 'gnupg'
 brew 'grc'
+brew 'hexyl'
+brew 'hyperfine'
 brew 'jq'
 brew 'man2html'
 brew 'moreutils'
