@@ -1,5 +1,5 @@
 {
-	"color_scheme": "Packages/Theme - Glacier/glacier.tmTheme",
+	"color_scheme": "Packages/Color Scheme - Default/Monokai.sublime-color-scheme",
 	"ensure_newline_at_eof_on_save": true,
 	"folder_exclude_patterns":
 	[
@@ -21,11 +21,7 @@
 	"font_face": "Hack-Regular",
 	"font_size": 18.0,
 	"hot_exit": false,
-	"ignored_packages":
-	[
-		"Vintage"
-	],
 	"remember_open_files": false,
 	"save_on_focus_list": true,
-	"theme": "Glacier.sublime-theme"
+	"theme": "Adaptive.sublime-theme"
 }

@@ -37,16 +37,3 @@ echo "* Symlinking \"$ZSH/sublime/User\" to \"$PACKAGE_DIR/User\""
 rm -rf "$PACKAGE_DIR/User"
 ln -s "$ZSH/sublime/User" "$PACKAGE_DIR"
 cd "$PACKAGE_DIR"
-
-# Install themes
-function install_theme() {
-  DIRNAME="$1"
-  GIT_URL="$2"
-
-  echo "* Installing \"$DIRNAME\""
-  [[ -d "$DIRNAME" ]] && rm -rf "$DIRNAME"
-  git clone --quiet --depth=1 "$GIT_URL" "$DIRNAME"
-}
-
-install_theme "Theme - Spacegray" "https://github.com/kkga/spacegray"
-install_theme "Theme - Glacier" "https://github.com/shovelandsandbox/glacier-theme"
