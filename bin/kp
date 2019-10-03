@@ -1,0 +1,16 @@
+#!/bin/bash
+# mnemonic: [K]ill [P]rocess
+# show output of "ps -ef", use [tab] to select one or multiple entries
+# press [enter] to kill selected processes and go back to the process list.
+# or press [escape] to go back to the process list. Press [escape] twice to exit completely.
+#
+# credit @SidOfc
+# https://github.com/SidOfc/dotfiles/blob/d07fa3862ed065c2a5a7f1160ae98416bfe2e1ee/zsh/kp
+
+
+PID=$(ps -ef | sed 1d | eval "fzf --height=50% --min-height=15 --reverse -m --header='[kill:process]'" | awk '{print $2}')
+
+if [ "x$PID" != "x" ]; then
+  echo $PID | xargs kill -${1:-9}
+  kp
+fi
