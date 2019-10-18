@@ -13,15 +13,15 @@ def dashes_dir
 end
 
 def dash_save(name, staged=false)
-  contents = `git diff #{staged ? '--staged' : ''} 2>/dev/null`.strip
-  abort('nothing to diff') if contents.empty?
+  contents = `git diff #{staged ? '--staged' : ''} 2>/dev/null`
+  abort('nothing to diff') if contents.strip.empty?
 
   file = File.join(dashes_dir, "#{(Time.now.to_f * 1000).to_i}")
   name = name || 'WIP'
   url = origin_url
 
   File.open(file, 'w') do |fd|
-    fd.puts(contents)
+    fd.write(contents)
   end
   system('xattr', '-w', 'dash_git_url', url, file)
   system('xattr', '-w', 'dash_name', name, file)

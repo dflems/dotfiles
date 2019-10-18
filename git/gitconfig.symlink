@@ -19,6 +19,7 @@
     aa = add --all
     tb = topic-branch
     rhh = reset --hard HEAD
+    pl = pull --prune --rebase
 
     # stash
     sl = stash list
@@ -33,7 +34,8 @@
     scalpel = reset --hard
     fuckit = "!git reset --hard origin/master"
     count = !git shortlog -sn
-    bumpsub = !sh -c 'cd "$1" && git checkout master && git pull && git subs' -
+    bumpsub = !sh -c 'cd "$1" && git checkout master && git pl origin master && git subs' -
+    master = !sh -c 'git checkout master && git pl upstream master && git subs' -
 
     # logging
     ls = log --pretty=format:'%C(yellow)%h %C(blue)%ad%C(red)%d %C(reset)%s%C(green) [%an]' --decorate --date=short
