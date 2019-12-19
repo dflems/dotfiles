@@ -5,10 +5,9 @@ export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
 export PATH="$ZSH/bin:$ZSH/git/bin:$PATH"
 
 # depot tools
-export PATH="$PATH:$PROJECT_HOME/depot_tools"
-
-# MacTeX
-export PATH="$PATH:/Library/TeX/Distributions/Programs/texbin"
+if [ -d "$PROJECT_HOME/depot_tools" ]; then
+  export PATH="$PATH:$PROJECT_HOME/depot_tools"
+fi
 
 # local npm
 export PATH="./node_modules/.bin:$PATH"
@@ -17,7 +16,7 @@ export PATH="./node_modules/.bin:$PATH"
 export PATH="./bin:$PATH"
 
 # manpages
-export MANPATH="/usr/local/man:/usr/local/mysql/man:/usr/local/git/man:$MANPATH"
+export MANPATH="/usr/local/man:/usr/local/git/man:$MANPATH"
 
 # cargo
 if [ -d "$HOME/.cargo/bin" ]; then
