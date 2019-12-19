@@ -1,22 +1,12 @@
-local MY_PYTHON="$(which python)"
-if [ "$MY_PYTHON" != "/usr/bin/python" ]; then
-  # use virtualenv wrapper
-  if [ -f $(brew --prefix)/bin/virtualenvwrapper_lazy.sh ]; then
-    export VIRTUAL_ENV_DISABLE_PROMPT=1
-    export WORKON_HOME=$HOME/.virtualenvs
-    . $(brew --prefix)/bin/virtualenvwrapper_lazy.sh
+export VIRTUAL_ENV_DISABLE_PROMPT=1
 
-    # venv will create a named virtualenv or one based on the current dir
-    venv () {
-      NAME="$1"
-      if [ -z "$NAME" ]; then
-        NAME=`basename "$PWD"`
-      fi
-      if [ -d "$WORKON_HOME/$NAME" ]; then
-        workon "$NAME"
-      else
-        mkvirtualenv "$NAME"
-      fi
-    }
-  fi
-fi
+venv2 () {
+  # requires virtualenv to be installed w/ pip
+  [[ -d ".venv2" ]] || virtualenv .venv2
+  source ".venv2/bin/activate"
+}
+
+venv3 () {
+  [[ -d ".venv3" ]] || python3 -m venv .venv3
+  source ".venv3/bin/activate"
+}

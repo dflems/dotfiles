@@ -1,9 +1,16 @@
-#!/bin/sh
+#!/bin/bash
 
-pip_install_reqs() {
-  [[ -f "$1" ]] && pip install -r "$1"
-}
+args=()
 
-pip_install_reqs "requirements.txt"
-pip_install_reqs "dev-requirements.txt"
-pip_install_reqs "build-requirements.txt"
+for file in *requirements.txt; do
+  [ -e "$file" ] || continue
+  args+=("-r" "$file")
+done
+
+if [ "${#args[@]}" -lt 1 ]; then
+  >&2 echo "no requirements files"
+  exit 1
+fi
+
+>&2 echo "! pip ${args[@]}"
+exec pip install "${args[@]}"
