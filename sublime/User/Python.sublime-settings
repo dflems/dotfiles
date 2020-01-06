@@ -4,10 +4,12 @@
 		"BUCK",
 		"BUILD",
 		"bzl",
+		"star",
 		"bazel",
 		"BUCKDEFS",
 		"WORKSPACE",
 		"*.BUILD",
+		"star",
 		"pyc_dis"
 	],
 	"tab_size": 4,
