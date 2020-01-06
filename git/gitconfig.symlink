@@ -21,6 +21,9 @@
     rhh = reset --hard HEAD
     pl = pull --prune --rebase
 
+    prune-remotes = !sh -c 'git remote -v | field 1 | sort | uniq | xargs -L1 git remote prune'
+    superprune = !sh -c 'git prune-remotes && git submodule foreach --recursive "git prune-remotes"'
+
     # stash
     sl = stash list
     sa = stash apply
@@ -35,7 +38,8 @@
     fuckit = "!git reset --hard origin/master"
     count = !git shortlog -sn
     bumpsub = !sh -c 'cd "$1" && git checkout master && git pl origin master && git subs' -
-    master = !sh -c 'git checkout master && git pl upstream master && git subs' -
+    orup = !sh -c 'git remote -v | grep -q upstream && echo upstream || echo origin'
+    m = !sh -c 'git checkout master && git pl `git orup` master && git subs && git dlm' -
 
     # logging
     ls = log --pretty=format:'%C(yellow)%h %C(blue)%ad%C(red)%d %C(reset)%s%C(green) [%an]' --decorate --date=short

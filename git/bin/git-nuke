@@ -8,5 +8,6 @@
 #
 #   git nuke add-git-nuke
 
+[[ -z "$1" ]] && exit 1
 git branch -D $1
 git push origin :$1
