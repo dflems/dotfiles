@@ -22,3 +22,9 @@ export MANPATH="/usr/local/man:/usr/local/git/man:$MANPATH"
 if [ -d "$HOME/.cargo/bin" ]; then
   export PATH="$PATH:$HOME/.cargo/bin"
 fi
+
+# gcloud
+cask_gcloud_bin="/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/bin"
+if [ -d "$cask_gcloud_bin" ]; then
+  export PATH="$PATH:$cask_gcloud_bin"
+fi
