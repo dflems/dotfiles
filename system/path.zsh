@@ -1,6 +1,3 @@
-# homebrew
-export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
-
 # dotfiles bin
 export PATH="$ZSH/bin:$ZSH/git/bin:$PATH"
 
