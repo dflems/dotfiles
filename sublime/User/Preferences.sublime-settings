@@ -21,7 +21,7 @@
 		".venv3",
 		".tox",
 		".nox",
-		".mypy_cache",
+		".mypy_cache"
 	],
 	"follow_symlinks": true,
 	"font_face": "Hack-Regular",
