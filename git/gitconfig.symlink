@@ -9,6 +9,7 @@
     cp = cherry-pick
     cl = clone
     ci = commit
+    cm = commit -m
     co = checkout
     br = branch
     bl = branch --list
@@ -82,3 +83,5 @@
 	smudge = git-lfs smudge -- %f
 [http]
 	cookiefile = ~/.gitcookies
+[url "git@ghe.spotify.net:"]
+	insteadOf = https://ghe.spotify.net/

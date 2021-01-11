@@ -7,7 +7,12 @@ alias l.='ls -d .[^.]*'
 alias lsd='ls -ld *(-/DN)'
 
 # Shortcuts
-alias dl="cd $HOME/Downloads"
+dl() {
+  cd "$HOME/Downloads"
+  if [ -n "$1" ]; then
+    curl -fLO "$1"
+  fi
+}
 alias dt="cd $HOME/Desktop"
 
 # Other
@@ -82,11 +87,6 @@ unset jscbin;
 # Kill all the tabs in Chrome to free up memory
 # [C] explained: http://www.commandlinefu.com/commands/view/402/exclude-grep-from-your-grepped-output-of-ps-alias-included-in-description
 alias chromekill="ps ux | grep '[C]hrome Helper --type=renderer' | grep -v extension-process | tr -s ' ' | cut -d ' ' -f2 | xargs kill"
-
-# Intuitive map function
-# For example, to list all directories that contain a certain file:
-# find . -name .gitattributes | map dirname
-alias map="xargs -n1"
 
 # chop off the first word
 alias first="awk '{print \$1}'"

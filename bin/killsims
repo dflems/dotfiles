@@ -1,6 +1,7 @@
-#!/bin/sh
+#!/bin/bash
 
 function kill_app() {
+  echo "Killing $1.app (if open)"
   killall -9 "$1" 2>/dev/null && echo "Killed $1.app"
 }
 

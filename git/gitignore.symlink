@@ -27,3 +27,5 @@ zeus.json
 .idea
 .java-version
 .python-version
+.nova/
+.vscode/

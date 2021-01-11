@@ -1,11 +1,11 @@
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 
 venv2 () {
-  # requires virtualenv to be installed w/ pip
+  # requires virtualenv to be installed w/ pip in py2
   local dir="${1:-.venv2}"
   if [[ ! -d "$dir" ]]; then
     >&2 echo "creating py2 virtualenv @ $dir"
-    virtualenv "$dir"
+    python2 -m virtualenv "$dir"
   fi
   source "$dir/bin/activate"
 }
