@@ -117,9 +117,6 @@ alias badge="tput bel"
 # Plays the sound associated with completion
 alias glass="afplay /System/Library/Sounds/Glass.aiff"
 
-# har har har
-alias bitch,='sudo'
-
 # port-forward 8080->80
 alias pf-on="echo 'rdr pass inet proto tcp from any to any port 80 -> 127.0.0.1 port 8080' | sudo pfctl -ef -"
 alias pf-off="sudo pfctl -F all -f /etc/pf.conf"

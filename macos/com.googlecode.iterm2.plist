@@ -2092,7 +2092,7 @@
 				<key>editor</key>
 				<string>com.sublimetext.4</string>
 				<key>text</key>
-				<string>/usr/local/bin/subl \1</string>
+				<string>~/.dotfiles/bin/subl \1</string>
 			</dict>
 			<key>Send Code When Idle</key>
 			<false/>

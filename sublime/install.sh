@@ -13,19 +13,6 @@ fi
 PACKAGE_DIR=~/Library/Application\ Support/Sublime\ Text\ 3/Packages
 mkdir -p "$PACKAGE_DIR"
 
-# Symlink Executable
-SUBL_EXEC="/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl"
-if [ -f "$SUBL_EXEC" ]; then
-  echo "* Symlinking to /usr/local/bin/subl"
-  rm -rf "/usr/local/bin/subl"
-  ln -sf "$SUBL_EXEC" /usr/local/bin/subl
-  echo "* Symlinking to /usr/local/bin/sublime"
-  rm -rf "/usr/local/bin/sublime"
-  ln -sf "$SUBL_EXEC" /usr/local/bin/sublime
-else
-  echo "! \"subl\" executable not found at \"$SUBL_EXEC\""
-fi
-
 # Symlink Package Dir
 if [ ! -L "$PACKAGE_DIR/User" ]; then
   USER_BACKUP="$PACKAGE_DIR/User_$(date +%s).backup"

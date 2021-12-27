@@ -12,16 +12,14 @@ export PATH="./node_modules/.bin:$PATH"
 # local bin priority
 export PATH="./bin:$PATH"
 
-# manpages
-export MANPATH="/usr/local/man:/usr/local/git/man:$MANPATH"
-
 # cargo
 if [ -d "$HOME/.cargo/bin" ]; then
   export PATH="$PATH:$HOME/.cargo/bin"
 fi
 
 # gcloud
-cask_gcloud_bin="/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/bin"
-if [ -d "$cask_gcloud_bin" ]; then
-  export PATH="$PATH:$cask_gcloud_bin"
+if [ -d "/opt/google-cloud-sdk" ]; then
+  export PATH="$PATH:/opt/google-cloud-sdk/bin"
+elif [ -d "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/bin" ]; then
+  export PATH="$PATH:/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/bin"
 fi
