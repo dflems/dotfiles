@@ -23,3 +23,11 @@ if [ -d "/opt/google-cloud-sdk" ]; then
 elif [ -d "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/bin" ]; then
   export PATH="$PATH:/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/bin"
 fi
+
+# jenv
+if [ -d "$HOME/.jenv" ]; then
+  export PATH="$HOME/.jenv/bin:$PATH"
+  eval "$(jenv init -)"
+elif [ -f /usr/libexec/java_home ]; then
+  export JAVA_HOME=$(/usr/libexec/java_home)
+fi

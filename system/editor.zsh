@@ -1,7 +1,7 @@
 # Set editor if unspecified
 if [[ "$EDITOR" == "" ]] ; then
   # Use `subl` as the editor if it's on the path
- if type subl >/dev/null 2>&1; then
+ if [ -f "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" ]; then
     export EDITOR='subp'
   else
     export EDITOR='vi'

@@ -6,8 +6,9 @@
 # using Homebrew.
 
 # Check for Homebrew
-if test ! $(which brew)
-then
+if [[ -f /opt/homebrew/bin/brew || -f /usr/local/bin/brew ]]; then
+  echo "  Homebrew is already installed."
+else
   echo "  Installing Homebrew for you."
 
   # Install the correct homebrew for each OS type
@@ -18,7 +19,6 @@ then
   then
     ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/linuxbrew/go/install)"
   fi
-
 fi
 
 exit 0
