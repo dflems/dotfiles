@@ -1,0 +1,1 @@
+ruby -e "puts Dir.glob(['$HOME/Library/Logs/DiagnosticReports/*.{crash,ips}', '/Library/Logs/DiagnosticReports/*.{crash,ips}']).max_by {|f| File.mtime(f)}"
