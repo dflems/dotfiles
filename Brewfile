@@ -1,7 +1,7 @@
 # Install more recent versions of some macOS tools.
 brew 'grep'
 brew 'screen'
-brew 'vim', args: ['override-system-vi']
+brew 'vim'
 
 # git + lfs
 brew 'git'

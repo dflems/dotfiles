@@ -3,6 +3,14 @@
 
 echo "Setting up Sublime Text..."
 
+get_package_dir() {
+  if [ -d "$HOME/Library/Application Support/Sublime Text 3/Packages" ]; then
+    echo "$HOME/Library/Application Support/Sublime Text 3/Packages"
+  else
+    echo "$HOME/Library/Application Support/Sublime Text/Packages"
+  fi
+}
+
 PID=`ps x | grep "Sublime Text.app" | grep -v "grep" | awk '{print $1}'`
 if [ ! -z "$PID" ]; then
   echo "! Please close Sublime Text before running this script."
@@ -10,7 +18,7 @@ if [ ! -z "$PID" ]; then
 fi
 
 # Check for install
-PACKAGE_DIR=~/Library/Application\ Support/Sublime\ Text\ 3/Packages
+PACKAGE_DIR="$(get_package_dir)"
 mkdir -p "$PACKAGE_DIR"
 
 # Symlink Package Dir
@@ -22,5 +30,4 @@ fi
 
 echo "* Symlinking \"$ZSH/sublime/User\" to \"$PACKAGE_DIR/User\""
 rm -rf "$PACKAGE_DIR/User"
-ln -s "$ZSH/sublime/User" "$PACKAGE_DIR"
-cd "$PACKAGE_DIR"
+ln -sf "$ZSH/sublime/User" "$PACKAGE_DIR"
