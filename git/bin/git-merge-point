@@ -1,0 +1,35 @@
+#!/bin/bash
+
+usage() {
+  echo "git-merge-point <commitid>"
+  exit 1
+}
+[ -n "$1" ] || usage
+
+# Make sure we are in a git directory
+git rev-parse --is-inside-work-tree >&- || exit $?
+
+# Get commit name and upstream name
+commit="$1"
+upstream="${2:-HEAD}"
+
+# Get list merges leading from $commit to $upstream
+IFS=$'\n' read -d '' -r -a ancestry < \
+  <(git rev-list --ancestry-path --merges "$commit..$upstream" --)
+
+# Get list of merges directly into $upstream
+IFS=$'\n' read -d '' -r -a merges < \
+  <(git rev-list --first-parent --merges "$commit..$upstream" -- | tac)
+
+# Find merge point
+for merge in "${merges[@]}"; do
+  for sha in "${ancestry[@]}"; do
+    if [ "$sha" = "$merge" ]; then
+      echo $sha
+      exit 0
+    fi
+  done
+done
+
+echo 'not merged' >&2
+exit 1

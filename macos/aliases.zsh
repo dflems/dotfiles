@@ -15,6 +15,9 @@ dl() {
 }
 alias dt="cd $HOME/Desktop"
 
+# git
+alias glsf='git ls-files'
+
 # Other
 alias md='mkdir -p'
 alias rd='rmdir'
@@ -92,7 +95,8 @@ alias chromekill="ps ux | grep '[C]hrome Helper --type=renderer' | grep -v exten
 alias first="awk '{print \$1}'"
 
 # Trim new lines and copy to clipboard
-alias pb="tr -d '\n' | pbcopy"
+alias pb='pbcopy'
+alias pbt="tr -d '\n' | pbcopy"
 
 # URL-encode strings
 alias urlencode='python -c "import sys, urllib as ul; print ul.quote_plus(sys.argv[1]);"'
@@ -120,3 +124,5 @@ alias bitch,='sudo'
 alias pf-on="echo 'rdr pass inet proto tcp from any to any port 80 -> 127.0.0.1 port 8080' | sudo pfctl -ef -"
 alias pf-off="sudo pfctl -F all -f /etc/pf.conf"
 alias pf-list="sudo pfctl -s nat"
+
+alias hexf="open -b com.ridiculousfish.HexFiend"

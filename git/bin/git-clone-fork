@@ -66,9 +66,7 @@ system('git', 'remote', 'add', 'upstream', upstream.ssh_url) || abort('Failed to
 system('git', 'fetch', 'upstream') || abort('Failed to fetch upstream.')
 
 # Configure upstream as default master
-# Also, prevent direct push to upstream
 system('git', 'config', 'branch.master.remote', 'upstream') || abort('Failed to set config.')
-system('git', 'remote', 'set-url', '--push', 'upstream', 'no_push')
 
 # Pull
 system('git', 'pull') || abort('Failed to pull.')

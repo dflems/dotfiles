@@ -1,0 +1,14 @@
+#!/bin/bash
+usage() {
+  echo "git-show-merge <commitid>"
+  exit 1
+}
+[ -n "$1" ] || usage
+COMMIT=$(git-merge-point $1)
+
+[ -n "$COMMIT" ] || {
+  echo "Not found or never merged"
+  exit 1
+}
+
+git show --show-signature $COMMIT

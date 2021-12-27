@@ -1,0 +1,8 @@
+#!/usr/bin/env ruby
+
+require 'json'
+require 'yaml'
+
+data = YAML.load_file(ARGV.first)
+data = JSON.parse(JSON.dump(data))
+YAML.dump(data, $stdout)

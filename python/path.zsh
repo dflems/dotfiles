@@ -19,6 +19,8 @@ venv3 () {
   source "$dir/bin/activate"
 }
 
+alias venv=venv3
+
 if [ -d "$HOME/.pyenv" ]; then
   export PYENV_ROOT="$HOME/.pyenv"
   export PATH="$PYENV_ROOT/bin:$PYENV_ROOT/shims:$PATH"

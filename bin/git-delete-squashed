@@ -1,0 +1,12 @@
+#!/bin/bash
+
+for branch in `git for-each-ref refs/heads/ "--format=%(refname:short)"`; do
+  mergebase=$(git merge-base master $branch)
+  if [[ $(git cherry master $(git commit-tree $(git rev-parse $branch\^{tree}) -p $mergebase -m _)) == "-"* ]]; then
+    if [[ "$1" == "list" ]]; then
+      echo "$branch"
+    else
+      git branch -D "$branch"
+    fi
+  fi
+done
