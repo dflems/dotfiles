@@ -1,5 +1,5 @@
 {
-	"color_scheme": "Packages/Color Scheme - Default/Monokai.sublime-color-scheme",
+	"color_scheme": "Mariana.sublime-color-scheme",
 	"ensure_newline_at_eof_on_save": true,
 	"folder_exclude_patterns":
 	[
@@ -21,7 +21,8 @@
 		".venv3",
 		".tox",
 		".nox",
-		".mypy_cache"
+		".mypy_cache",
+		"external/*"
 	],
 	"follow_symlinks": true,
 	"font_face": "Hack-Regular",
@@ -29,5 +30,5 @@
 	"hot_exit": false,
 	"remember_open_files": false,
 	"save_on_focus_list": true,
-	"theme": "Adaptive.sublime-theme"
+	"theme": "Adaptive.sublime-theme",
 }
