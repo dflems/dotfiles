@@ -21,8 +21,9 @@ venv3 () {
 
 alias venv=venv3
 
-if [ -d "$HOME/.pyenv" ]; then
+if command -v pyenv >/dev/null ; then
   export PYENV_ROOT="$HOME/.pyenv"
   export PATH="$PYENV_ROOT/bin:$PYENV_ROOT/shims:$PATH"
   eval "$(pyenv init -)"
+  alias brew='env PATH="${PATH//$(pyenv root)\/shims:/}" brew'
 fi

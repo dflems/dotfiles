@@ -1,18 +1,12 @@
 export LSCOLORS="exfxcxdxbxegedabagacad"
 export CLICOLOR=true
 
-for dir ($HOME/.fpath $ZSH/**/functions)
-do
-  if [ -d "$dir" ]
-  then
-    fpath=($dir $fpath)
-    autoload -U $dir/*(:t)
-  fi
-done
+fpath=($ZSH/functions $fpath)
+autoload -U $ZSH/functions/*(:t)
 
 HISTFILE=~/.zsh_history
-HISTSIZE=10000
-SAVEHIST=10000
+HISTSIZE=50000
+SAVEHIST=50000
 
 setopt NO_BG_NICE # don't nice background tasks
 setopt NO_HUP
@@ -35,8 +29,6 @@ setopt HIST_REDUCE_BLANKS
 # don't expand aliases _before_ completion has finished
 #   like: git comm-[tab]
 setopt complete_aliases
-
-zle -N newtab
 
 bindkey '^[^[[D' backward-word
 bindkey '^[^[[C' forward-word

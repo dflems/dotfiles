@@ -20,7 +20,7 @@ script/bootstrap
 ```
 
 ### .dotfiles of interest
-* [dotfiles.github.com](http://dotfiles.github.com): Growing list of resources (follow [@octodots](http://www.twitter.com/octodots) for the latest-and-greatest)
+* [dotfiles.github.io](http://dotfiles.github.io) & [@octodots](http://www.twitter.com/octodots)
 * [holman/dotfiles](http://github.com/holman/dotfiles): Bootstrapping, topicality, ZSH config
 * [garybernhardt/dotfiles](https://github.com/garybernhardt/dotfiles): Git hotness
 * [mathiasbynens/dotfiles](https://github.com/mathiasbynens/dotfiles): macOS goodness
