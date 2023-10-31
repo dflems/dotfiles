@@ -1,4 +1,5 @@
 [
 	{ "keys": ["super+v"], "command": "paste_and_indent" },
 	{ "keys": ["super+shift+v"], "command": "paste" },
+	{ "keys": ["f8"], "command": "permute_lines", "args": {"operation": "unique"} }
 ]

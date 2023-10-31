@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 # Open a web pull request from the current branch
 
-BRANCH = ARGV.first || 'master'
+TARGET_BRANCH = ARGV.shift || 'master'
 
 def make_hash(host, path)
   parts = path.split('/')
@@ -34,5 +34,5 @@ upstream = parse_url(remote_endpoints["upstream"]) || parse_url(remote_endpoints
 abort "Remotes must be on same host" unless remote[:host] == upstream[:host] 
 
 # construct url
-url = "https://#{upstream[:host]}/#{upstream[:path]}/compare/#{upstream[:user]}:#{BRANCH}...#{remote[:user]}:#{branch_name}?expand=1"
+url = "https://#{upstream[:host]}/#{upstream[:path]}/compare/#{upstream[:user]}:#{TARGET_BRANCH}...#{remote[:user]}:#{branch_name}?expand=1"
 system('open', url)

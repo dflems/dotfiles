@@ -29,3 +29,5 @@ zeus.json
 .python-version
 .nova/
 .vscode/
+/scratch.rb
+/scratch.py

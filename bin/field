@@ -1,3 +1,11 @@
 #!/bin/bash
 
-awk "{print \$$1}"
+FIELD="$1"
+if [[ "$FIELD" == "-1" ]]; then
+  FIELD="NF"
+elif [[ "$FIELD" == -* ]]; then
+  FIELD="${FIELD#-}"
+  FIELD="(NF-$((FIELD-1)))"
+fi
+
+exec awk "{print \$$FIELD}"

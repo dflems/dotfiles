@@ -11,8 +11,8 @@
 		"public/__assets",
 		"node_modules",
 		"buck-out",
-		"bazel-*",
-		"tulsigen-*",
+		"bazel-*/",
+		"tulsigen-*/",
 		"tulsi-workspace",
 		"build/DerivedData",
 		"infer-out",
@@ -21,8 +21,7 @@
 		".venv3",
 		".tox",
 		".nox",
-		".mypy_cache",
-		"external/*"
+		".mypy_cache"
 	],
 	"follow_symlinks": true,
 	"font_face": "Hack-Regular",
@@ -31,4 +30,9 @@
 	"remember_open_files": false,
 	"save_on_focus_list": true,
 	"theme": "Adaptive.sublime-theme",
+	"ignored_packages":
+	[
+		"Vintage",
+	],
+	"update_check": false,
 }

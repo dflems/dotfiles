@@ -27,3 +27,6 @@ if command -v pyenv >/dev/null ; then
   eval "$(pyenv init -)"
   alias brew='env PATH="${PATH//$(pyenv root)\/shims:/}" brew'
 fi
+
+# pipx
+export PATH="$PATH:$HOME/.local/bin"

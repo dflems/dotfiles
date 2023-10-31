@@ -1,0 +1,9 @@
+#!/bin/bash
+
+if [ $# -eq 0 ]; then
+  >&2 echo "no query"
+  exit 1
+fi
+
+QUERY="$(echo "$@" | sed 's/ /+/g')"
+exec curl "https://cht.sh/${QUERY}"
